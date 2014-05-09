@@ -18,10 +18,10 @@ Functionnalies
 
 Roadmap
 -----------
-    - Integration of Bootstrap 3
-    - Drag & drop interface in the pannel admin to add widgets into pages
-    - Internationalization of the pages, layouts and widgets
-    - Manage accounts (ACL)
+  - Integration of Bootstrap 3
+  - Drag & drop interface in the pannel admin to add widgets into pages
+  - Internationalization of the pages, layouts and widgets
+  - Manage accounts (ACL)
 
 Tech
 -----------
