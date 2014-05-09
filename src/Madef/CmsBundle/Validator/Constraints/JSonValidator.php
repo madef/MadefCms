@@ -29,11 +29,14 @@
 namespace Madef\CmsBundle\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraint;
+use Symfony\Component\Validator\ConstraintValidator;
 
-/**
- * @Annotation
- */
-class NonPublishedVersion extends Constraint
+class JSonValidator extends ConstraintValidator
 {
-    public $message = 'admin.error.version.invalid';
+    public function validate($value, Constraint $constraint)
+    {
+        if (json_decode($value) === NULL) {
+            $this->context->addViolation($constraint->message);
+        }
+    }
 }

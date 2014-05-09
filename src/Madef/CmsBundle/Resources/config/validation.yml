@@ -2,6 +2,20 @@ Madef\CmsBundle\Entity\Page:
     constraints:
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: [version, identifier]
     properties:
+        content:
+            - Madef\CmsBundle\Validator\Constraints\JSon: ~
         version:
             - NotBlank: ~
             - Madef\CmsBundle\Validator\Constraints\NonPublishedVersion: ~
+Madef\CmsBundle\Entity\Layout:
+    properties:
+        default_content:
+            - Madef\CmsBundle\Validator\Constraints\JSon: ~
+        structure:
+            - Madef\CmsBundle\Validator\Constraints\JSon: ~
+Madef\CmsBundle\Entity\Widget:
+    properties:
+        default_content:
+            - Madef\CmsBundle\Validator\Constraints\JSon: ~
+        form:
+            - Madef\CmsBundle\Validator\Constraints\JSon: ~

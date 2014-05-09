@@ -123,7 +123,7 @@ class AdminWidgetController extends Controller
         if ($version->wasPublished()) {
             $widget = new Widget();
             $widget->setIdentifier($currentWidget->getIdentifier());
-            $widget->setStructure($currentWidget->getStructure());
+            $widget->setForm($currentWidget->getForm());
             $widget->setTemplate($currentWidget->getTemplate());
             $widget->setDefaultContent($currentWidget->getDefaultContent());
             $widget->setRemoved(false);

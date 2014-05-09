@@ -73,7 +73,7 @@ class Widget
      * @ORM\Column(type="text")
      * @var string
      */
-    private $defaultContent;
+    private $default_content;
 
     /**
      * @ORM\Column(type="boolean")
@@ -173,12 +173,12 @@ class Widget
     /**
      * Set defaultContent
      *
-     * @param  string $defaultContent
+     * @param  string $default_content
      * @return Widget
      */
-    public function setDefaultContent($defaultContent)
+    public function setDefaultContent($default_content)
     {
-        $this->defaultContent = $defaultContent;
+        $this->default_content = $default_content;
 
         return $this;
     }
@@ -190,7 +190,7 @@ class Widget
      */
     public function getDefaultContent()
     {
-        return $this->defaultContent;
+        return $this->default_content;
     }
 
     /**

@@ -33,7 +33,7 @@ use Symfony\Component\Validator\Constraint;
 /**
  * @Annotation
  */
-class NonPublishedVersion extends Constraint
+class JSon extends Constraint
 {
-    public $message = 'admin.error.version.invalid';
+    public $message = 'admin.error.json.invalid';
 }

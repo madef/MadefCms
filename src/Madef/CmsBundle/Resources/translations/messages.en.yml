@@ -17,6 +17,10 @@ admin:
                 notfound: Page do not exists
             widget:
                 notfound: Widget do not exists
+        version:
+            invalid: Invalid version
+        json:
+            invalid: Invalid JSon format
     layout:
         page:
             add:
