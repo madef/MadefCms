@@ -2,9 +2,3 @@ parameters:
 #    madef_cms.example.class: Madef\CmsBundle\Example
 
 services:
-    madef_cms.validator.nonpublishedversion:
-        class: Madef\CmsBundle\Validator\Constraints\NonPublishedVersionValidator
-        arguments: [@request, @doctrine.orm.entity_manager]
-        scope: request
-        tags:
-            - { name: validator.constraint_validator, alias: madefcms_nonpublishedversion }

@@ -30,20 +30,9 @@ namespace Madef\CmsBundle\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
-use Symfony\Component\HttpFoundation\Request;
-use Doctrine\ORM\EntityManager;
 
 class NonPublishedVersionValidator extends ConstraintValidator
 {
-    private $request;
-    private $em;
-
-    public function __construct(Request $request, EntityManager $em)
-    {
-        $this->request = $request;
-        $this->em      = $em;
-    }
-
     public function validate($value, Constraint $constraint)
     {
         if ($value->wasPublished()) {

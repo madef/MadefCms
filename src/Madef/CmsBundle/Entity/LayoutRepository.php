@@ -47,7 +47,7 @@ class LayoutRepository extends EntityRepository
 
         $results = array();
         foreach ($qb->getQuery()->getResult() as $row) {
-            $results [] = $row['identifier'];
+            $results [$row['identifier']] = $row['identifier'];
         }
 
         return $results;

@@ -36,9 +36,4 @@ use Symfony\Component\Validator\Constraint;
 class NonPublishedVersion extends Constraint
 {
     public $message = 'Invalid version.';
-
-    public function validatedBy()
-    {
-        return 'madefcms_nonpublishedversion';
-    }
 }
