@@ -18,7 +18,6 @@ Functionnalies
 
 Roadmap
 -----------
-  - Integration of Bootstrap 3
   - Drag & drop interface in the pannel admin to add widgets into pages
   - Internationalization of the pages, layouts and widgets
   - Manage accounts (ACL)
@@ -27,6 +26,8 @@ Tech
 -----------
 
 * [Symfony 2.4] - PHP 5.3 full-stack web framework
+* [Bootstrap] - Front-end framework for developing responsive,
+* [jQuery] - Feature-rich JavaScript library
 
 Installation
 --------------

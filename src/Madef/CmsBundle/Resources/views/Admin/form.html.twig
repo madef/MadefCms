@@ -1,5 +1,7 @@
 {% extends "MadefCmsBundle:Layout:admin.html.twig" %}
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
-    {{ form(form) }}
+    {% include 'BraincraftedBootstrapBundle::flash.html.twig' %}
+    {{ form_start(form, { 'style': 'horizontal' }) }}
+    {{ form_end(form) }}
 {% endblock %}

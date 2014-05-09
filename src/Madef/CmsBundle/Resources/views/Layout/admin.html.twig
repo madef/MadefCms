@@ -1,28 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         {% block head %}
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
             <title>{% block title %}{% endblock %} - {% trans %}app.title{% endtrans %}</title>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            <!-- Bootstrap -->
+            <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+            <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+            <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+            <!--[if lt IE 9]>
+              <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+              <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+            <![endif]-->
         {% endblock %}
-        <meta charset='utf-8'>
     </head>
-    <body>
-        <div>
-            <ul>
-                <li><a href="{{ url('madef_cms_admin_page_list') }}">{% trans %}app.menu.page{% endtrans %}</a></li>
-                <li><a href="{{ url('madef_cms_admin_page_add') }}">+</a></li>
-                <li><a href="{{ url('madef_cms_admin_layout_list') }}">{% trans %}app.menu.layout{% endtrans %}</a></li>
-                <li><a href="{{ url('madef_cms_admin_layout_add') }}">+</a></li>
-                <li><a href="{{ url('madef_cms_admin_widget_list') }}">{% trans %}app.menu.widget{% endtrans %}</a></li>
-                <li><a href="{{ url('madef_cms_admin_widget_add') }}">+</a></li>
-                <li><a href="{{ url('madef_cms_admin_version_list') }}">{% trans %}app.menu.version{% endtrans %}</a></li>
-                <li><a href="{{ url('madef_cms_admin_version_add') }}">+</a></li>
-            </ul>
+    <body role="document">
+    <!-- Static navbar -->
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ url('madef_cms_admin_home') }}">{% trans %}app.title{% endtrans %}</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_home' %}active{% endif %}"><a href="{{ url('madef_cms_admin_page_list') }}">{% trans %}app.menu.page{% endtrans %}</a></li>
+                    <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_page_add' %}active{% endif %}"><a href="{{ url('madef_cms_admin_page_add') }}">+</a></li>
+                    <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_layout_list' %}active{% endif %}"><a href="{{ url('madef_cms_admin_layout_list') }}">{% trans %}app.menu.layout{% endtrans %}</a></li>
+                    <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_layout_add' %}active{% endif %}"><a href="{{ url('madef_cms_admin_layout_add') }}">+</a></li>
+                    <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_widget_list' %}active{% endif %}"><a href="{{ url('madef_cms_admin_widget_list') }}">{% trans %}app.menu.widget{% endtrans %}</a></li>
+                    <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_widget_add' %}active{% endif %}"><a href="{{ url('madef_cms_admin_widget_add') }}">+</a></li>
+                    <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_version_list' %}active{% endif %}"><a href="{{ url('madef_cms_admin_version_list') }}">{% trans %}app.menu.version{% endtrans %}</a></li>
+                    <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_version_add' %}active{% endif %}"><a href="{{ url('madef_cms_admin_version_add') }}">+</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans %}app.menu.parameters{% endtrans %} <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">{% trans %}app.menu.myaccount{% endtrans %}</a></li>
+                            <li><a href="#">{% trans %}app.menu.users{% endtrans %}</a></li>
+                            <li><a href="#">{% trans %}app.menu.groups{% endtrans %}</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
         </div>
-        <div>
+    </div>
+        <div class="container" role="main">
             {% block content %}
             {% endblock %}
         </div>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     </body>
 </html>

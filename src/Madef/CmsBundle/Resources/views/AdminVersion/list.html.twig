@@ -1,16 +1,51 @@
 {% extends "MadefCmsBundle:Layout:admin.html.twig" %}
 {% block title %}{% trans %}admin.version.page.list.title{% endtrans %}{% endblock %}
 {% block content %}
-    <ul>
-    {% for version in versions %}
-        <li>
-            {{ version.getIdentifier() }}
-            {% if (version.wasPublished()) %}{% trans %}admin.version.page.item.pusblished{% endtrans %}{% endif %}
-            {% if (not version.getCurrent()) %}
-                <a href="{{ url('madef_cms_admin_version_publish', {version: version.getId()}) }}">{% trans %}admin.version.page.item.current{% endtrans %}</a>
-            {% endif %}
-        </li>
-    {% endfor %}
-    </ul>
-    <a href="{{ url('madef_cms_admin_version_add') }}">Add</a>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>{% trans %}admin.version.page.list.table.header.identifier{% endtrans %}</th>
+                <th class="hidden-xs text-center">{% trans %}admin.version.page.list.table.header.publication{% endtrans %}</th>
+                <th class="text-center">{% trans %}admin.version.page.list.table.header.status{% endtrans %}</th>
+                <th class="text-right">{% trans %}admin.version.page.list.table.header.action{% endtrans %}</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>{% trans %}admin.version.page.list.table.header.identifier{% endtrans %}</th>
+                <th class="hidden-xs text-center">{% trans %}admin.version.page.list.table.header.publication{% endtrans %}</th>
+                <th class="text-center">{% trans %}admin.version.page.list.table.header.status{% endtrans %}</th>
+                <th class="text-right">{% trans %}admin.version.page.list.table.header.action{% endtrans %}</th>
+            </tr>
+        </tfoot>
+        <tbody>
+            {% for version in versions %}
+                <tr class="{% if (not version.wasPublished()) %}info{% elseif (version.getCurrent()) %}success{% endif %}">
+                    <td>{{ version.getIdentifier() }}</td>
+                    <td class="hidden-xs text-center">
+                        {% if (version.wasPublished()) %}
+                            {{ version.getPublishedAt().format('Y-m-d') }}
+                        {% else %}
+                            --
+                        {% endif %}
+                    </td>
+                    <td class="text-center">
+                        {% if (version.getCurrent()) %}
+                            <span class="label label-success">{% trans %}admin.version.page.item.current{% endtrans %}</span>
+                        {% elseif (version.wasPublished()) %}
+                            <span class="label label-info">{% trans %}admin.version.page.item.pusblished{% endtrans %}</span>
+                        {% else %}
+                            <span class="label label-primary">{% trans %}admin.version.page.item.notpublished{% endtrans %}</span>
+                        {% endif %}
+                    </td>
+                    <td class="text-right">
+                        {% if (not version.getCurrent()) %}
+                            <a href="{{ url('madef_cms_admin_version_publish', {version: version.getId()}) }}" class="btn btn-primary" role="button">{% trans %}admin.version.page.list.table.action.publish{% endtrans %}</a>
+                        {% else %}
+                            <a href="#" class="btn btn-primary disabled" role="button">{% trans %}admin.version.page.list.table.action.publish{% endtrans %}</a>
+                        {% endif %}
+                    </td>
+            {% else %}
+                <tr><td class="text-center" colspan="4"><a href="{{ url('madef_cms_admin_version_add') }}">{% trans %}admin.version.page.list.table.action.add{% endtrans %}</a></td></tr>
+        {% endfor %}
 {% endblock %}

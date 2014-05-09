@@ -1,23 +1,56 @@
 {% extends "MadefCmsBundle:Layout:admin.html.twig" %}
 {% block title %}{% trans %}admin.page.page.list.title{% endtrans %}{% endblock %}
 {% block content %}
-    <ul>
-    {% for page in pages %}
-        <li>{{ page.getIdentifier() }}
-            <select onchange="if (this.value) { window.location.href = this.value }">
-                <option value="">{% trans %}admin.page.page.list.item.edit{% endtrans %}</option>
-                {% for version in page.getVersions() %}
-                    <option value="{{ url('madef_cms_admin_page_edit', {identifier: page.getIdentifier(), version: version.getId()}) }}">{{ version.getIdentifier() }}</option>
-                {% endfor %}
-            </select>
-            <select onchange="if (this.value) { window.location.href = this.value }">
-                <option value="">{% trans %}admin.page.page.list.item.overview{% endtrans %}</option>
-                {% for version in page.getVersions() %}
-                    <option value="{{ url('madef_cms_front_display_versioned_page', {identifier: page.getIdentifier(), hashVersion: version.getHash()}) }}">{{ version.getIdentifier() }}</option>
-                {% endfor %}
-            </select>
-        </li>
-    {% endfor %}
-    </ul>
-    <a href="{{ url('madef_cms_admin_page_add') }}">Add</a>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>{% trans %}admin.page.page.list.table.header.identifier{% endtrans %}</th>
+                <th class="hidden-xs">{% trans %}admin.page.page.list.table.header.layout{% endtrans %}</th>
+                <th>{% trans %}admin.page.page.list.table.header.view{% endtrans %}</th>
+                <th class="text-right">{% trans %}admin.page.page.list.table.header.edit{% endtrans %}</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>{% trans %}admin.page.page.list.table.header.identifier{% endtrans %}</th>
+                <th class="hidden-xs">{% trans %}admin.page.page.list.table.header.layout{% endtrans %}</th>
+                <th>{% trans %}admin.page.page.list.table.header.view{% endtrans %}</th>
+                <th class="text-right">{% trans %}admin.page.page.list.table.header.edit{% endtrans %}</th>
+            </tr>
+        </tfoot>
+        <tbody>
+            {% for page in pages %}
+                <tr>
+                    <td>{{ page.getIdentifier() }}</td>
+                    <td class="hidden-xs">{{ page.getLayoutIdentifier() }}</td>
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                {% trans %}admin.page.page.list.table.action.overview{% endtrans %} <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                {% for version in page.getVersions() %}
+                                    <li><a href="{{ url('madef_cms_front_display_versioned_page', {identifier: page.getIdentifier(), hashVersion: version.getHash()}) }}">{{ version.getIdentifier() }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                {% trans %}admin.page.page.list.table.action.edit{% endtrans %} <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                {% for version in page.getVersions() %}
+                                    <li><a href="{{ url('madef_cms_admin_page_edit', {identifier: page.getIdentifier(), version: version.getId()}) }}">{{ version.getIdentifier() }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr><td class="text-center" colspan="4"><a href="{{ url('madef_cms_admin_page_add') }}">{% trans %}admin.page.page.list.table.action.add{% endtrans %}</a></td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

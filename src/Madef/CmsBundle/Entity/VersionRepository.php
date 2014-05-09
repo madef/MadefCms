@@ -42,7 +42,7 @@ class VersionRepository extends EntityRepository
         $qb = $this->_em->createQueryBuilder();
         $qb->select('v')
                 ->from('Madef\CmsBundle\Entity\Version', 'v')
-                ->orderBy('v.identifier', 'ASC')
+                ->orderBy('v.created_at', 'DESC')
                 ->where('v.published_at IS NULL');
 
         return $qb;
@@ -57,7 +57,7 @@ class VersionRepository extends EntityRepository
         $qb = $this->_em->createQueryBuilder();
         $qb->select('v')
                 ->from('Madef\CmsBundle\Entity\Version', 'v')
-                ->orderBy('v.identifier', 'ASC')
+                ->orderBy('v.created_at', 'DESC')
                 ->where('v.published_at IS NOT NULL');
 
         return $qb;
@@ -73,7 +73,7 @@ class VersionRepository extends EntityRepository
 
         return $qb->select('v')
                 ->from('Madef\CmsBundle\Entity\Version', 'v')
-                ->orderBy('v.created_at', 'ASC')
+                ->orderBy('v.created_at', 'DESC')
                 ->getQuery()
                 ->getResult();
     }

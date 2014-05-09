@@ -2,10 +2,15 @@
 app:
     title: VCM
     menu:
+        groups: Groups
         layout: Layout
+        myaccount: My account
         page: Page
+        parameters: Parameters
+        users: Users
+        version: Version
         widget: Widget
-    version: 0.1
+    version: 0.2
 
 # Admin section
 admin:
@@ -28,6 +33,13 @@ admin:
             edit:
                 title: Edit a layout
             list:
+                table:
+                    action:
+                        add: Add a layout
+                        edit: Modify
+                    header:
+                        edit: Modify
+                        identifier: Identifier
                 title: List of layouts
     page:
         page:
@@ -36,11 +48,17 @@ admin:
             edit:
                 title: Edit a page
             list:
+                table:
+                    action:
+                        add: Add a page
+                        edit: Modify
+                        overview: Overview
+                    header:
+                        edit: Modify
+                        identifier: Path / Identifier
+                        layout: Layout
+                        view: Overview
                 title: List of pages
-                item:
-                    edit: Edit
-                    overview: Overview
-
     widget:
         page:
             add:
@@ -48,7 +66,33 @@ admin:
             edit:
                 title: Edit a widget
             list:
+                table:
+                    action:
+                        add: Add a widget
+                        edit: Modify
+                    header:
+                        edit: Modify
+                        identifier: Identifier
                 title: List of widgets
+    version:
+        page:
+            add:
+                title: Add a version
+            item:
+                current: Current version
+                notpublished: Not published yet
+                pusblished: Was published
+            list:
+                table:
+                    action:
+                        add: Create a version
+                        publish: Publish
+                    header:
+                        action: Action
+                        identifier: Identifier
+                        publication: Date of publication
+                        status: Status
+                title: List of versions
 
 
 # Front section

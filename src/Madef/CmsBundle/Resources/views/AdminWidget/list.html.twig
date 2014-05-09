@@ -1,17 +1,39 @@
 {% extends "MadefCmsBundle:Layout:admin.html.twig" %}
 {% block title %}{% trans %}admin.widget.page.list.title{% endtrans %}{% endblock %}
 {% block content %}
-    <ul>
-    {% for widget in widgets %}
-        <li>{{ widget.getIdentifier() }}
-            <select onchange="if (this.value) { window.location.href = this.value }">
-                <option value="">Edit</option>
-                {% for version in widget.getVersions() %}
-                    <option value="{{ url('madef_cms_admin_widget_edit', {identifier: widget.getIdentifier(), version: version.getId()}) }}">{{ version.getIdentifier() }}</option>
-                {% endfor %}
-            </select>
-        </li>
-    {% endfor %}
-    </ul>
-    <a href="{{ url('madef_cms_admin_widget_add') }}">Add</a>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>{% trans %}admin.widget.page.list.table.header.identifier{% endtrans %}</th>
+                <th class="text-right">{% trans %}admin.widget.page.list.table.header.edit{% endtrans %}</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>{% trans %}admin.widget.page.list.table.header.identifier{% endtrans %}</th>
+                <th class="text-right">{% trans %}admin.widget.page.list.table.header.edit{% endtrans %}</th>
+            </tr>
+        </tfoot>
+        <tbody>
+            {% for widget in widgets %}
+                <tr>
+                    <td>{{ widget.getIdentifier() }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                {% trans %}admin.widget.page.list.table.action.edit{% endtrans %} <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                {% for version in widget.getVersions() %}
+                                    <li><a href="{{ url('madef_cms_admin_widget_edit', {identifier: widget.getIdentifier(), version: version.getId()}) }}">{{ version.getIdentifier() }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr><td class="text-center" colspan="2"><a href="{{ url('madef_cms_admin_layout_add') }}">{% trans %}admin.widget.page.list.table.action.add{% endtrans %}</a></td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
