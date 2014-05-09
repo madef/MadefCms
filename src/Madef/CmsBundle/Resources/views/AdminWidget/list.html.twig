@@ -1,0 +1,17 @@
+{% extends "MadefCmsBundle:Layout:admin.html.twig" %}
+{% block title %}{% trans %}admin.widget.page.list.title{% endtrans %}{% endblock %}
+{% block content %}
+    <ul>
+    {% for widget in widgets %}
+        <li>{{ widget.getIdentifier() }}
+            <select onchange="if (this.value) { window.location.href = this.value }">
+                <option value="">Edit</option>
+                {% for version in widget.getVersions() %}
+                    <option value="{{ url('madef_cms_admin_widget_edit', {identifier: widget.getIdentifier(), version: version.getId()}) }}">{{ version.getIdentifier() }}</option>
+                {% endfor %}
+            </select>
+        </li>
+    {% endfor %}
+    </ul>
+    <a href="{{ url('madef_cms_admin_widget_add') }}">Add</a>
+{% endblock %}

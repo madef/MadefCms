@@ -1,0 +1,7 @@
+Madef\CmsBundle\Entity\Page:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: [version, identifier]
+    properties:
+        version:
+            - NotBlank: ~
+            - Madef\CmsBundle\Validator\Constraints\NonPublishedVersion: ~

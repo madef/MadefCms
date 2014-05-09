@@ -1,0 +1,76 @@
+# Back office
+
+madef_cms_admin_language_router:
+    pattern:  /admin
+    defaults: { _controller: MadefCmsBundle:Language:adminRoute }
+
+madef_cms_admin_home:
+    pattern:  /admin/{_locale}
+    defaults: { _controller: MadefCmsBundle:AdminPage:list }
+
+madef_cms_admin_page_list:
+    pattern:  /admin/{_locale}
+    defaults: { _controller: MadefCmsBundle:AdminPage:list }
+
+madef_cms_admin_page_add:
+    pattern:  /admin/{_locale}/page/add
+    defaults: { _controller: MadefCmsBundle:AdminPage:add }
+
+madef_cms_admin_page_edit:
+    pattern:  /admin/{_locale}/page/{identifier}/{version}
+    defaults: { _controller: MadefCmsBundle:AdminPage:edit }
+
+madef_cms_admin_page_remove:
+    pattern:  /admin/{_locale}/page/{identifier}/{version}
+    defaults: { _controller: MadefCmsBundle:AdminPage:edit }
+
+madef_cms_admin_layout_list:
+    pattern:  /admin/{_locale}/layout
+    defaults: { _controller: MadefCmsBundle:AdminLayout:list }
+
+madef_cms_admin_layout_add:
+    pattern:  /admin/{_locale}/layout/add
+    defaults: { _controller: MadefCmsBundle:AdminLayout:add }
+
+madef_cms_admin_layout_edit:
+    pattern:  /admin/{_locale}/layout/{identifier}/{version}
+    defaults: { _controller: MadefCmsBundle:AdminLayout:edit }
+
+madef_cms_admin_widget_list:
+    pattern:  /admin/{_locale}/widget
+    defaults: { _controller: MadefCmsBundle:AdminWidget:list }
+
+madef_cms_admin_widget_add:
+    pattern:  /admin/{_locale}/widget/add
+    defaults: { _controller: MadefCmsBundle:AdminWidget:add }
+
+madef_cms_admin_widget_edit:
+    pattern:  /admin/{_locale}/widget/{identifier}/{version}
+    defaults: { _controller: MadefCmsBundle:AdminWidget:edit }
+
+madef_cms_admin_version_list:
+    pattern:  /admin/{_locale}/version
+    defaults: { _controller: MadefCmsBundle:AdminVersion:list }
+
+madef_cms_admin_version_add:
+    pattern:  /admin/{_locale}/version/add
+    defaults: { _controller: MadefCmsBundle:AdminVersion:add }
+
+madef_cms_admin_version_publish:
+    pattern:  /admin/{_locale}/version/publish/{version}
+    defaults: { _controller: MadefCmsBundle:AdminVersion:publish }
+
+
+# Front office
+
+madef_cms_front_language_router:
+    pattern:  /
+    defaults: { _controller: MadefCmsBundle:Language:frontRoute }
+
+madef_cms_front_display_versioned_page:
+    pattern:  /{_locale}/{hashVersion}/{identifier}
+    defaults: { _controller: MadefCmsBundle:Front:index }
+
+madef_cms_front_display_page:
+    pattern:  /{_locale}/{identifier}
+    defaults: { _controller: MadefCmsBundle:Front:index, hashVersion: current, identifier: 'home' }

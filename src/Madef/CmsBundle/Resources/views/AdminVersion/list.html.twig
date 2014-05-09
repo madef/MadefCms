@@ -1,0 +1,16 @@
+{% extends "MadefCmsBundle:Layout:admin.html.twig" %}
+{% block title %}{% trans %}admin.version.page.list.title{% endtrans %}{% endblock %}
+{% block content %}
+    <ul>
+    {% for version in versions %}
+        <li>
+            {{ version.getIdentifier() }}
+            {% if (version.wasPublished()) %}{% trans %}admin.version.page.item.pusblished{% endtrans %}{% endif %}
+            {% if (not version.getCurrent()) %}
+                <a href="{{ url('madef_cms_admin_version_publish', {version: version.getId()}) }}">{% trans %}admin.version.page.item.current{% endtrans %}</a>
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+    <a href="{{ url('madef_cms_admin_version_add') }}">Add</a>
+{% endblock %}

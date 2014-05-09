@@ -1,0 +1,23 @@
+{% extends "MadefCmsBundle:Layout:admin.html.twig" %}
+{% block title %}{% trans %}admin.page.page.list.title{% endtrans %}{% endblock %}
+{% block content %}
+    <ul>
+    {% for page in pages %}
+        <li>{{ page.getIdentifier() }}
+            <select onchange="if (this.value) { window.location.href = this.value }">
+                <option value="">{% trans %}admin.page.page.list.item.edit{% endtrans %}</option>
+                {% for version in page.getVersions() %}
+                    <option value="{{ url('madef_cms_admin_page_edit', {identifier: page.getIdentifier(), version: version.getId()}) }}">{{ version.getIdentifier() }}</option>
+                {% endfor %}
+            </select>
+            <select onchange="if (this.value) { window.location.href = this.value }">
+                <option value="">{% trans %}admin.page.page.list.item.overview{% endtrans %}</option>
+                {% for version in page.getVersions() %}
+                    <option value="{{ url('madef_cms_front_display_versioned_page', {identifier: page.getIdentifier(), hashVersion: version.getHash()}) }}">{{ version.getIdentifier() }}</option>
+                {% endfor %}
+            </select>
+        </li>
+    {% endfor %}
+    </ul>
+    <a href="{{ url('madef_cms_admin_page_add') }}">Add</a>
+{% endblock %}

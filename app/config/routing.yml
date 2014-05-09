@@ -1,0 +1,4 @@
+madef_cms:
+    resource: "@MadefCmsBundle/Resources/config/routing.yml"
+    prefix:   /
+

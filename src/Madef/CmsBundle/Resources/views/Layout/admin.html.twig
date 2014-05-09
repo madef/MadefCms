@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block head %}
+            <title>{% block title %}{% endblock %} - {% trans %}app.title{% endtrans %}</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% endblock %}
+        <meta charset='utf-8'>
+    </head>
+    <body>
+        <div>
+            <ul>
+                <li><a href="{{ url('madef_cms_admin_page_list') }}">{% trans %}app.menu.page{% endtrans %}</a></li>
+                <li><a href="{{ url('madef_cms_admin_page_add') }}">+</a></li>
+                <li><a href="{{ url('madef_cms_admin_layout_list') }}">{% trans %}app.menu.layout{% endtrans %}</a></li>
+                <li><a href="{{ url('madef_cms_admin_layout_add') }}">+</a></li>
+                <li><a href="{{ url('madef_cms_admin_widget_list') }}">{% trans %}app.menu.widget{% endtrans %}</a></li>
+                <li><a href="{{ url('madef_cms_admin_widget_add') }}">+</a></li>
+                <li><a href="{{ url('madef_cms_admin_version_list') }}">{% trans %}app.menu.version{% endtrans %}</a></li>
+                <li><a href="{{ url('madef_cms_admin_version_add') }}">+</a></li>
+            </ul>
+        </div>
+        <div>
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

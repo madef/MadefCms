@@ -1,0 +1,61 @@
+# App section
+app:
+    title: VCM
+    menu:
+        layout: Layout
+        page: Page
+        widget: Widget
+    version: 0.1
+
+# Admin section
+admin:
+    error:
+        entity:
+            layout:
+                notfound: Layout do not exists
+            page:
+                notfound: Page do not exists
+            widget:
+                notfound: Widget do not exists
+    layout:
+        page:
+            add:
+                title: Add a layout
+            edit:
+                title: Edit a layout
+            list:
+                title: List of layouts
+    page:
+        page:
+            add:
+                title: Add a page
+            edit:
+                title: Edit a page
+            list:
+                title: List of pages
+                item:
+                    edit: Edit
+                    overview: Overview
+
+    widget:
+        page:
+            add:
+                title: Add a widget
+            edit:
+                title: Edit a widget
+            list:
+                title: List of widgets
+
+
+# Front section
+front:
+    error:
+        entity:
+            page:
+                notfound: 404 - Page not found
+                content:
+                    format: 500 - Fatal error
+                layout:
+                    unknow: 500 - Fatal error
+                widget:
+                    unknow: 500 - Fatal error
