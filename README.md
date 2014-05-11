@@ -3,7 +3,7 @@ MadefCms
 
 Madef Cms is a small and easy to use versioned content management system based on symfony 2 project.
 
-Functionnalies
+Functionnalities
 -----------
 
   - Versioning
