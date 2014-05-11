@@ -14,10 +14,10 @@ Functionalities
   - Templating
     - Every template are versionned
     - Stored in database
-    - Modification via the admin pannel (widget, layout, page)
+    - Modification via the admin panel (widget, layout, page)
   - Easy to use
     - Drag & drop interface to add widgets into pages
-    - Create widget, layout and page dirrectly on the admin pannel
+    - Create widgets, layouts and pages directly on the admin panel
 
 Roadmap
 -----------
