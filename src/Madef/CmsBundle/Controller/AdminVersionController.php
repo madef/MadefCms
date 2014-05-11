@@ -59,12 +59,14 @@ class AdminVersionController extends Controller
     {
         $version = new Version();
         $version->setCurrent(false);
-        $version->setIdentifier('version-identifier');
 
         $em = $this->getDoctrine()->getManager();
 
         $form = $this->createFormBuilder($version)
-            ->add('identifier', 'text')
+            ->add('identifier', 'text', array(
+                'attr' => array(
+                    'placeholder' => '1 - initial version',
+            )))
             ->add('save', 'submit')
             ->getForm();
 
@@ -99,8 +101,10 @@ class AdminVersionController extends Controller
 
         $currentVersion = $this->getDoctrine()->getRepository('MadefCmsBundle:Version')
                 ->getCurrentVersion();
-        $currentVersion->setCurrent(false);
-        $em->persist($currentVersion);
+        if ($currentVersion) {
+            $currentVersion->setCurrent(false);
+            $em->persist($currentVersion);
+        }
 
         $version->setCurrent(true);
         $version->setPublishedAt(new \DateTime());

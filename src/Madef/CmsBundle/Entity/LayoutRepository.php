@@ -153,4 +153,17 @@ class LayoutRepository extends EntityRepository
                 ->getOneOrNullResult();
     }
 
+    /**
+     * Get number of layout
+     * @return int
+     */
+    public function count()
+    {
+        return $this->createQueryBuilder('id')
+            ->select('COUNT(id)')
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+    }
+
 }

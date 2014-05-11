@@ -37,7 +37,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_home' %}active{% endif %}"><a href="{{ url('madef_cms_admin_page_list') }}">{% trans %}app.menu.page{% endtrans %}</a></li>
+                    <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_page_list' %}active{% endif %}"><a href="{{ url('madef_cms_admin_page_list') }}">{% trans %}app.menu.page{% endtrans %}</a></li>
                     <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_page_add' %}active{% endif %}"><a href="{{ url('madef_cms_admin_page_add') }}">+</a></li>
                     <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_layout_list' %}active{% endif %}"><a href="{{ url('madef_cms_admin_layout_list') }}">{% trans %}app.menu.layout{% endtrans %}</a></li>
                     <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_layout_add' %}active{% endif %}"><a href="{{ url('madef_cms_admin_layout_add') }}">+</a></li>

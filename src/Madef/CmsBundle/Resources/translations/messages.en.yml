@@ -10,7 +10,7 @@ app:
         users: Users
         version: Version
         widget: Widget
-    version: 0.3
+    version: 0.4
 
 # Admin section
 admin:
@@ -44,6 +44,37 @@ admin:
                         identifier: Identifier
                 title: List of layouts
     page:
+        home:
+            step-layout:
+                bigtitle: Create a layout
+                create: Create your first layout
+                details: You can now create a layout. A layout is the basic html of a page. Use <code>{{ block | raw }}</code> to declare blocks (replace "block" by a name describing its utility).
+                title: Create your first layout
+                welcome: Congratulation, you created your first version!
+            step-page:
+                bigtitle: Create your home page
+                create: Create the home page
+                details: You are ready to create a first page using the layout and widgets.
+                title: Create your home page
+                welcome: Congratulation, you created some widgets!
+            step-publish:
+                bigtitle: Publish your first version
+                create: Publish your first version
+                details: You are now ready to publish your first version.
+                title: Publish your first version
+                welcome: Congratulation, you created your first page!
+            step-version:
+                bigtitle: Welcome in VCM!
+                create: Create your first version
+                details: To start, you will need to create a version
+                title: Welcome in VCM!
+                welcome: VCM is a content management system made to manage versionned content.
+            step-widget:
+                bigtitle: Create some widgets
+                create: Create your first widget
+                details: You can now create some widgets. Widgets are pieces of HTML to create small elements like a title, a paragraph, a slider, ... Use <code>{{ var }}</code> to declare a variable (replace "var" by a name describing its utility).
+                title: Create your first widget
+                welcome: Congratulation, you created your first layout!
         page:
             add:
                 title: Add a page

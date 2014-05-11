@@ -62,16 +62,27 @@ class AdminWidgetController extends Controller
     public function addAction(Request $request)
     {
         $page = new Widget();
-        $page->setIdentifier('widget-identifier');
         $page->setRemoved(false);
 
         $em = $this->getDoctrine()->getManager();
 
         $form = $this->createFormBuilder($page)
-            ->add('identifier', 'text')
-            ->add('form', 'textarea')
-            ->add('template', 'textarea')
-            ->add('default_content', 'textarea')
+            ->add('identifier', 'text', array(
+                'attr' => array(
+                    'placeholder' => 'widget-identifier',
+            )))
+            ->add('form', 'textarea', array(
+                'attr' => array(
+                    'placeholder' => '[{"title": "text"}, {"content": "textarea"}]',
+            )))
+            ->add('template', 'textarea', array(
+                'attr' => array(
+                    'placeholder' => '<h2>{{ title }}</h2><p>{{content}}</p>',
+            )))
+            ->add('default_content', 'textarea', array(
+                'attr' => array(
+                    'placeholder' => '{"title": "Hello", "content": "Hello world!"}',
+            )))
             ->add('version', 'entity', array(
                 'class' => 'MadefCmsBundle:Version',
                 'empty_value'  => '',
@@ -132,9 +143,18 @@ class AdminWidgetController extends Controller
         }
 
         $form = $this->createFormBuilder($widget)
-            ->add('form', 'textarea')
-            ->add('template', 'textarea')
-            ->add('default_content', 'textarea')
+            ->add('form', 'textarea', array(
+                'attr' => array(
+                    'placeholder' => '[{"title": "text"}, {"content": "textarea"}]',
+            )))
+            ->add('template', 'textarea', array(
+                'attr' => array(
+                    'placeholder' => '<h2>{{ title }}</h2><p>{{content}}</p>',
+            )))
+            ->add('default_content', 'textarea', array(
+                'attr' => array(
+                    'placeholder' => '{"title": "Hello", "content": "Hello world!"}',
+            )))
             ->add('version', 'entity', array(
                 'class' => 'MadefCmsBundle:Version',
                 'empty_value'  => '',

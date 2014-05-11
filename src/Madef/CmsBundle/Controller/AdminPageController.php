@@ -62,7 +62,6 @@ class AdminPageController extends Controller
     public function addAction(Request $request)
     {
         $page = new Page();
-        $page->setIdentifier('page-identifier');
         $page->setRemoved(false);
 
         $em = $this->getDoctrine()->getManager();
@@ -71,7 +70,10 @@ class AdminPageController extends Controller
                 ->getIdentifierList()->toArray();
 
         $form = $this->createFormBuilder($page)
-            ->add('identifier', 'text')
+            ->add('identifier', 'text', array(
+                'attr' => array(
+                    'placeholder' => 'home',
+            )))
             ->add('layout_identifier', 'choice', array(
                 'choices'   => $layoutList,
                 'empty_value'  => '',
@@ -81,7 +83,12 @@ class AdminPageController extends Controller
                     'data-ajax-url' => $this->generateUrl('madef_cms_admin_ajax_render_structure'),
                 ),
             ))
-            ->add('content', 'textarea')
+            ->add('content', new \Madef\CmsBundle\Form\Type\StructureType, array(
+                'attr' => array(
+                    'data-ajax-render-content-url' => $this->generateUrl('madef_cms_admin_ajax_render_content'),
+                    'data-ajax-render-widget-from-url' => $this->generateUrl('madef_cms_admin_ajax_render_widget_form'),
+                ),
+            ))
             ->add('version', 'entity', array(
                 'class' => 'MadefCmsBundle:Version',
                 'empty_value'  => '',

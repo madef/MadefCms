@@ -48,33 +48,44 @@ class StructureValidator extends ConstraintValidator
             return;
         }
 
+                var_export($array);
         foreach ($array as $subarray) {
             if (!is_array ($subarray)) {
                 $this->context->addViolation($constraint->message);
 
                 return;
             }
-            if (count($subarray) !== 1) {
-                $this->context->addViolation($constraint->message);
 
-                return;
-            }
-            foreach ($subarray as $block) {
-                if (!is_object($block)) {
+            foreach ($subarray as $blockContainer) {
+                if (!is_array ($blockContainer)) {
                     $this->context->addViolation($constraint->message);
 
                     return;
                 }
-                foreach ($block as $string => $numeric) {
-                    if (!is_string($string)) {
+                if (count($blockContainer) !== 1) {
+                    $this->context->addViolation($constraint->message);
+
+                    return;
+                }
+
+                foreach ($blockContainer as $block) {
+                    if (!is_object($block)) {
                         $this->context->addViolation($constraint->message);
 
                         return;
                     }
-                    if (!is_numeric($numeric)) {
-                        $this->context->addViolation($constraint->message);
 
-                        return;
+                    foreach ($block as $string => $numeric) {
+                        if (!is_string($string)) {
+                            $this->context->addViolation($constraint->message);
+
+                            return;
+                        }
+                        if (!is_numeric($numeric)) {
+                            $this->context->addViolation($constraint->message);
+
+                            return;
+                        }
                     }
                 }
             }

@@ -102,4 +102,17 @@ class PageRepository extends EntityRepository
                 ->getOneOrNullResult();
     }
 
+    /**
+     * Get number of page
+     * @return int
+     */
+    public function count()
+    {
+        return $this->createQueryBuilder('id')
+            ->select('COUNT(id)')
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+    }
+
 }

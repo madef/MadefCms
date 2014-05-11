@@ -61,12 +61,15 @@ Create the tables:
 ```sh
 php app/console doctrine:schema:update --force
 ```
+An other way to create the database is to execute the dump /dump/demo.sql. It include some example.
 
 Allow the application to write in cache and log directories:
 ```sh
 chmod a+rw app/logs/
 chmod a+rw app/cache/
 ```
+
+Finally, go to the admin panel to create your first page. The url is /admin (app_dev.php/admin).
 
 
 License

@@ -62,16 +62,29 @@ class AdminLayoutController extends Controller
     public function addAction(Request $request)
     {
         $page = new Layout();
-        $page->setIdentifier('layout-identifier');
         $page->setRemoved(false);
 
         $em = $this->getDoctrine()->getManager();
 
         $form = $this->createFormBuilder($page)
-            ->add('identifier', 'text')
-            ->add('structure', 'textarea')
+            ->add('identifier', 'text', array(
+                'attr' => array(
+                    'placeholder' => 'layout-identifier',
+            )))
+            ->add('structure', 'textarea', array(
+                'attr' => array(
+                    'placeholder' => '['
+                    . '  [[{"head": 12}]],'
+                    . '  [[{"header": 12}]],'
+                    . '  [[{"leftcolumn": 4}], [{"rightcolumn" => 8}]],'
+                    . '  [[{"footer": 12}]]'
+                    . ']',
+            )))
             ->add('template', 'textarea')
-            ->add('default_content', 'textarea')
+            ->add('default_content', 'textarea', array(
+                'attr' => array(
+                    'placeholder' => '{}',
+            )))
             ->add('version', 'entity', array(
                 'class' => 'MadefCmsBundle:Version',
                 'empty_value'  => '',
@@ -132,9 +145,20 @@ class AdminLayoutController extends Controller
         }
 
         $form = $this->createFormBuilder($layout)
-            ->add('structure', 'textarea')
+            ->add('structure', 'textarea', array(
+                'attr' => array(
+                    'placeholder' => '['
+                    . '  [[{"head": 12}]],'
+                    . '  [[{"header": 12}]],'
+                    . '  [[{"leftcolumn": 4}], [{"rightcolumn" => 8}]],'
+                    . '  [[{"footer": 12}]]'
+                    . ']',
+            )))
             ->add('template', 'textarea')
-            ->add('default_content', 'textarea')
+            ->add('default_content', 'textarea', array(
+                'attr' => array(
+                    'placeholder' => '{}',
+            )))
             ->add('version', 'entity', array(
                 'class' => 'MadefCmsBundle:Version',
                 'empty_value'  => '',

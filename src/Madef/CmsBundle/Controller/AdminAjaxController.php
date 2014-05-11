@@ -45,7 +45,7 @@ class AdminAjaxController extends Controller
     public function widgetsAndLayoutsAction(Request $request)
     {
         $version = $this->getDoctrine()->getRepository('MadefCmsBundle:Version')
-                ->findOneByIdentifier($request->get('version'));
+                ->find($request->get('version'));
 
         $layoutCollection = $this->getDoctrine()->getRepository('MadefCmsBundle:Layout')
                 ->findByVersion($version);
@@ -90,18 +90,20 @@ class AdminAjaxController extends Controller
 
         $contentList = array();
 
-        foreach ($content as $blockIdentifier => $blockData) {
-            $contentList[$blockIdentifier] = array();
-            foreach ($blockData as $widgetData) {
-                if (!isset($widgetData['vars'])) {
-                    $widgetData['vars'] = array();
+        if (is_array($content)) {
+            foreach ($content as $blockIdentifier => $blockData) {
+                $contentList[$blockIdentifier] = array();
+                foreach ($blockData as $widgetData) {
+                    if (!isset($widgetData['vars'])) {
+                        $widgetData['vars'] = array();
+                    }
+                    $contentList[$blockIdentifier][] = $this->renderView('MadefCmsBundle:AdminAjax:widget-item.html.twig',
+                            array(
+                                'widget' => $widgetData['identifier'],
+                                'vars' => json_encode($widgetData['vars']),
+                            )
+                        );
                 }
-                $contentList[$blockIdentifier][] = $this->renderView('MadefCmsBundle:AdminAjax:widget-item.html.twig',
-                        array(
-                            'widget' => $widgetData['identifier'],
-                            'vars' => json_encode($widgetData['vars']),
-                        )
-                    );
             }
         }
 

@@ -73,12 +73,17 @@ $(function() {
         };
 
         var renderWidgetInContent = function() {
+            if ($('#form_content').val().length) {
+                var formContent = JSON.parse($('#form_content').val());
+            } else {
+                var formContent = {};
+            }
             $.ajax({
                 url: $('#form_content').attr('data-ajax-render-content-url'),
                 method: 'post',
                 dataType: 'json',
                 data: {
-                    content: JSON.parse($('#form_content').val())
+                    content: formContent
                 }
             }).done(function(data) {
                 $.each(data, function(blockIdentifier, widgetList) {

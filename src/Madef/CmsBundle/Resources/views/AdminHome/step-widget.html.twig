@@ -1,0 +1,10 @@
+{% extends "MadefCmsBundle:Layout:admin.html.twig" %}
+{% block title %}{% trans %}admin.page.home.step-widget.title{% endtrans %}{% endblock %}
+{% block content %}
+    <div class="jumbotron">
+        <h1>{% trans %}admin.page.home.step-widget.bigtitle{% endtrans %}</h1>
+        <p>{% trans %}admin.page.home.step-widget.welcome{% endtrans %}</p>
+        <p>{% trans %}admin.page.home.step-widget.details{% endtrans %}</p>
+        <p><a href="{{ url('madef_cms_admin_widget_add') }}" class="btn btn-primary btn-lg" role="button">{% trans %}admin.page.home.step-widget.create{% endtrans %}</a></p>
+      </div>
+{% endblock %}

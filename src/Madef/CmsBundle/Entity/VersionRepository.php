@@ -93,4 +93,32 @@ class VersionRepository extends EntityRepository
                 ->getQuery()
                 ->getOneOrNullResult();
     }
+
+    /**
+     * Get number of version published
+     * @return int
+     */
+    public function countPublished()
+    {
+        return $this->createQueryBuilder('id')
+            ->select('COUNT(v.id)')
+            ->from('Madef\CmsBundle\Entity\Version', 'v')
+            ->where('v.published_at IS NOT NULL')
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+    }
+
+    /**
+     * Get number of version
+     * @return int
+     */
+    public function count()
+    {
+        return $this->createQueryBuilder('id')
+            ->select('COUNT(id)')
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+    }
 }

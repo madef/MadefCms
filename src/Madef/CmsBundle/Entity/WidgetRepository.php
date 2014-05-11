@@ -133,4 +133,17 @@ class WidgetRepository extends EntityRepository
                 ->getOneOrNullResult();
     }
 
+    /**
+     * Get number of widget
+     * @return int
+     */
+    public function count()
+    {
+        return $this->createQueryBuilder('id')
+            ->select('COUNT(id)')
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+    }
+
 }

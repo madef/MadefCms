@@ -6,10 +6,10 @@ madef_cms_admin_language_router:
 
 madef_cms_admin_home:
     pattern:  /admin/{_locale}
-    defaults: { _controller: MadefCmsBundle:AdminPage:list }
+    defaults: { _controller: MadefCmsBundle:AdminHome:index }
 
 madef_cms_admin_page_list:
-    pattern:  /admin/{_locale}
+    pattern:  /admin/{_locale}/page
     defaults: { _controller: MadefCmsBundle:AdminPage:list }
 
 madef_cms_admin_page_add:
