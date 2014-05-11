@@ -41,7 +41,7 @@ madef_cms_admin_widget_list:
     defaults: { _controller: MadefCmsBundle:AdminWidget:list }
 
 madef_cms_admin_widget_add:
-    pattern:  /admin/{_locale}/widget/add
+    pattern:  /admin/{_locale}/widget/addpublish
     defaults: { _controller: MadefCmsBundle:AdminWidget:add }
 
 madef_cms_admin_widget_edit:
@@ -59,6 +59,22 @@ madef_cms_admin_version_add:
 madef_cms_admin_version_publish:
     pattern:  /admin/{_locale}/version/publish/{version}
     defaults: { _controller: MadefCmsBundle:AdminVersion:publish }
+
+madef_cms_admin_ajax_widgets_and_layouts:
+    pattern:  /admin/{_locale}/ajax/widgets-and-layouts
+    defaults: { _controller: MadefCmsBundle:AdminAjax:widgetsAndLayouts }
+
+madef_cms_admin_ajax_render_content:
+    pattern:  /admin/{_locale}/ajax/render-content
+    defaults: { _controller: MadefCmsBundle:AdminAjax:renderContent }
+
+madef_cms_admin_ajax_render_widget_form:
+    pattern:  /admin/{_locale}/ajax/render-widget-form
+    defaults: { _controller: MadefCmsBundle:AdminAjax:renderWidgetForm }
+
+madef_cms_admin_ajax_render_structure:
+    pattern:  /admin/{_locale}/ajax/render-structure
+    defaults: { _controller: MadefCmsBundle:AdminAjax:renderStructure }
 
 
 # Front office

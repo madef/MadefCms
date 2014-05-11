@@ -1,0 +1,5 @@
+<div class="container-fluid js-sortable-column js-sortable-column-initial">
+    {% for widget, data in widgetList %}
+        {{ include('MadefCmsBundle:AdminAjax:widget-item.html.twig', {'widget': widget}) }}
+    {% endfor %}
+</div>

@@ -1,0 +1,36 @@
+{% block structure_widget %}
+    {% spaceless %}
+        {% set col_size = col_size|default(bootstrap_get_col_size()) %}
+
+        {% if attr.simple_col is defined and attr.simple_col is not empty %}
+            {% set simple_col = attr.simple_col %}
+        {% endif  %}
+        {% if attr.col_size is defined and attr.col_size is not empty %}
+            {% set col_size = attr.col_size %}
+        {% endif %}
+
+        {% if simple_col is defined %}
+            <div class="col-{{ col_size }}-{{ simple_col }}">
+        {% endif %}
+
+        {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' form-control')|trim }) %}
+
+        <input type="hidden" {{ block('widget_attributes') }} value="{{ value }}" />
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="structure__structure-container js-structure-container">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="structure__widget-container js-widget-container">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if simple_col is defined %}
+            </div>
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}

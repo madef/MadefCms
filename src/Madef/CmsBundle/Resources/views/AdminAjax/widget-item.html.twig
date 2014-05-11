@@ -1,0 +1,11 @@
+<div class="row js-sortable-item">
+    <div class="col-md-12 js-widget-item structure__widget-item widget-item"
+         data-identifier="{{ widget }}"
+         data-vars="{% if vars is defined %}{{ vars }}{% endif %}">
+        {{ widget }}
+        <span class="widget-item__icon widget-item__icon--configure js-widget-item-configure js-widget-item-action glyphicon glyphicon-wrench" data-identifier="{{ widget }}"></span>
+        <span
+            class="widget-item__icon widget-item__icon--remove js-widget-item-remove js-widget-item-action glyphicon glyphicon-remove"
+            data-confirm="{% trans %}admin.page.field.structure.remove.confirm{% endtrans %}"></span>
+    </div>
+</div>

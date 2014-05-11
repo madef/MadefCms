@@ -35,7 +35,7 @@ class WidgetRepository extends EntityRepository
 {
     /**
      * Get default collection
-     * @return array
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getDefaultCollection()
     {
@@ -52,7 +52,7 @@ class WidgetRepository extends EntityRepository
 
     /**
      * Populate versions
-     * @return ArrayCollection
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function addVersions(&$collection)
     {
@@ -73,6 +73,37 @@ class WidgetRepository extends EntityRepository
 
             $item->setVersions($versions);
         }
+    }
+
+    /**
+     * Get widgets collection available for a specify version
+     * @param  \Madef\CmsBundle\Entity\Version              $version
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function findByVersion($version)
+    {
+        // Filter by version
+        $subqueryVersion = $this->_em->createQueryBuilder();
+        $subqueryVersion->select('v')
+                ->from('Madef\CmsBundle\Entity\Version', 'v')
+                ->where('v.id <= :version_id');
+
+        // Filter the last version of each identifier
+        $subqueryWidget = $this->_em->createQueryBuilder();
+        $subqueryWidget->select('MAX(w2.version)')
+                ->from('Madef\CmsBundle\Entity\Widget', 'w2')
+                ->where($subqueryWidget->expr()->in('w2.version', $subqueryVersion->getDQL()))
+                ->andWhere('w.identifier = w2.identifier');
+
+        $qb = $this->_em->createQueryBuilder();
+
+        return $qb->select('w')
+                ->from('Madef\CmsBundle\Entity\Widget', 'w')
+                ->orderBy('w.identifier', 'ASC')
+                ->where($qb->expr()->in('w.version', $subqueryWidget->getDQL()))
+                ->setParameter('version_id', $version->getId())
+                ->getQuery()
+                ->getResult();
     }
 
     /**

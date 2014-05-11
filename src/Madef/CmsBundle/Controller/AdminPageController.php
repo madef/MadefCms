@@ -68,13 +68,18 @@ class AdminPageController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $layoutList = $this->getDoctrine()->getRepository('MadefCmsBundle:Layout')
-                ->getIdentifierList();
+                ->getIdentifierList()->toArray();
 
         $form = $this->createFormBuilder($page)
             ->add('identifier', 'text')
             ->add('layout_identifier', 'choice', array(
                 'choices'   => $layoutList,
                 'empty_value'  => '',
+                'attr' => array(
+                    'data-error-version-title' => $this->get('translator')->trans('admin.page.page.add.field.layoutidentifier.error.version.title'),
+                    'data-error-version-content' => $this->get('translator')->trans('admin.page.page.add.field.layoutidentifier.error.version.content'),
+                    'data-ajax-url' => $this->generateUrl('madef_cms_admin_ajax_render_structure'),
+                ),
             ))
             ->add('content', 'textarea')
             ->add('version', 'entity', array(
@@ -84,6 +89,9 @@ class AdminPageController extends Controller
                 'query_builder' => function (EntityRepository $er) {
                     return $er->getNotPublishedQuery();
                 },
+                'attr' => array(
+                    'data-ajax-url' => $this->generateUrl('madef_cms_admin_ajax_widgets_and_layouts'),
+                ),
             ))
             ->add('save', 'submit')
             ->getForm();
@@ -125,7 +133,7 @@ class AdminPageController extends Controller
         }
 
         $layoutList = $this->getDoctrine()->getRepository('MadefCmsBundle:Layout')
-                ->getIdentifierList();
+                ->getIdentifierList()->toArray();
 
         // Use new page if version is published
         if ($version->wasPublished()) {
@@ -142,8 +150,18 @@ class AdminPageController extends Controller
             ->add('layout_identifier', 'choice', array(
                 'choices'   => $layoutList,
                 'empty_value'  => '',
+                'attr' => array(
+                    'data-error-version-title' => $this->get('translator')->trans('admin.page.page.add.field.layoutidentifier.error.version.title'),
+                    'data-error-version-content' => $this->get('translator')->trans('admin.page.page.add.field.layoutidentifier.error.version.content'),
+                    'data-ajax-url' => $this->generateUrl('madef_cms_admin_ajax_render_structure'),
+                ),
             ))
-            ->add('content', 'textarea')
+            ->add('content', new \Madef\CmsBundle\Form\Type\StructureType, array(
+                'attr' => array(
+                    'data-ajax-render-content-url' => $this->generateUrl('madef_cms_admin_ajax_render_content'),
+                    'data-ajax-render-widget-from-url' => $this->generateUrl('madef_cms_admin_ajax_render_widget_form'),
+                ),
+            ))
             ->add('version', 'entity', array(
                 'class' => 'MadefCmsBundle:Version',
                 'empty_value'  => '',
@@ -151,6 +169,9 @@ class AdminPageController extends Controller
                 'query_builder' => function (EntityRepository $er) {
                     return $er->getNotPublishedQuery();
                 },
+                'attr' => array(
+                    'data-ajax-url' => $this->generateUrl('madef_cms_admin_ajax_widgets_and_layouts'),
+                ),
             ))
             ->add('save', 'submit')
             ->getForm();

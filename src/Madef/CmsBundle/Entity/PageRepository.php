@@ -35,7 +35,7 @@ class PageRepository extends EntityRepository
 {
     /**
      * Get default collection
-     * @return array
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getDefaultCollection()
     {
@@ -52,7 +52,7 @@ class PageRepository extends EntityRepository
 
     /**
      * Populate versions
-     * @return ArrayCollection
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function addVersions(&$collection)
     {

@@ -35,7 +35,7 @@ class LayoutRepository extends EntityRepository
 {
     /**
      * Get the list of identifiers
-     * @return array
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getIdentifierList()
     {
@@ -45,9 +45,9 @@ class LayoutRepository extends EntityRepository
                 ->orderBy('l.identifier', 'ASC')
                 ->groupBy('l.identifier');
 
-        $results = array();
+        $results = new ArrayCollection();
         foreach ($qb->getQuery()->getResult() as $row) {
-            $results [$row['identifier']] = $row['identifier'];
+            $results->set($row['identifier'], $row['identifier']);
         }
 
         return $results;
@@ -55,7 +55,7 @@ class LayoutRepository extends EntityRepository
 
     /**
      * Get default collection
-     * @return array
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getDefaultCollection()
     {
@@ -72,7 +72,7 @@ class LayoutRepository extends EntityRepository
 
     /**
      * Populate versions
-     * @return ArrayCollection
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function addVersions(&$collection)
     {
@@ -93,6 +93,37 @@ class LayoutRepository extends EntityRepository
 
             $item->setVersions($versions);
         }
+    }
+
+    /**
+     * Get layouts collection available for a specify version
+     * @param  \Madef\CmsBundle\Entity\Version              $version
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function findByVersion($version)
+    {
+        // Filter by version
+        $subqueryVersion = $this->_em->createQueryBuilder();
+        $subqueryVersion->select('v')
+                ->from('Madef\CmsBundle\Entity\Version', 'v')
+                ->where('v.id <= :version_id');
+
+        // Filter the last version of each identifier
+        $subqueryLayout = $this->_em->createQueryBuilder();
+        $subqueryLayout->select('MAX(l2.version)')
+                ->from('Madef\CmsBundle\Entity\Layout', 'l2')
+                ->where($subqueryLayout->expr()->in('l2.version', $subqueryVersion->getDQL()))
+                ->andWhere('l.identifier = l2.identifier');
+
+        $qb = $this->_em->createQueryBuilder();
+
+        return $qb->select('l')
+                ->from('Madef\CmsBundle\Entity\Layout', 'l')
+                ->orderBy('l.identifier', 'ASC')
+                ->where($qb->expr()->in('l.version', $subqueryLayout->getDQL()))
+                ->setParameter('version_id', $version->getId())
+                ->getQuery()
+                ->getResult();
     }
 
     /**

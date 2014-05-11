@@ -12,7 +12,7 @@ Madef\CmsBundle\Entity\Layout:
         default_content:
             - Madef\CmsBundle\Validator\Constraints\JSon: ~
         structure:
-            - Madef\CmsBundle\Validator\Constraints\JSon: ~
+            - Madef\CmsBundle\Validator\Constraints\Structure: ~
 Madef\CmsBundle\Entity\Widget:
     properties:
         default_content:

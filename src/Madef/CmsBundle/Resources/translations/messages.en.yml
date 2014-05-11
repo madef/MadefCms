@@ -10,7 +10,7 @@ app:
         users: Users
         version: Version
         widget: Widget
-    version: 0.2
+    version: 0.3
 
 # Admin section
 admin:
@@ -26,6 +26,8 @@ admin:
             invalid: Invalid version
         json:
             invalid: Invalid JSon format
+        structure:
+            invalid: This field must be a JSon table in two dimensions
     layout:
         page:
             add:
@@ -45,6 +47,12 @@ admin:
         page:
             add:
                 title: Add a page
+                field:
+                    layoutidentifier:
+                        error:
+                            version:
+                                title: Error
+                                content: Please select a version first
             edit:
                 title: Edit a page
             list:
@@ -59,6 +67,10 @@ admin:
                         layout: Layout
                         view: Overview
                 title: List of pages
+        field:
+            structure:
+                remove:
+                    confirm: Are you sure?
     widget:
         page:
             add:
@@ -74,6 +86,14 @@ admin:
                         edit: Modify
                         identifier: Identifier
                 title: List of widgets
+        type:
+            head:
+                label:
+                    title: title
+        modal:
+            title: Configure widget "%widgetName%"
+            close: Close
+            save: Save changes
     version:
         page:
             add:

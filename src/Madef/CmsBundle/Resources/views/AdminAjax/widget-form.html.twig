@@ -1,0 +1,23 @@
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="mySmallModalLabel">{% trans with {'%widgetName%': widgetName} %}admin.widget.modal.title{% endtrans %}</h4>
+            </div>
+            <form class="js-modal-form">
+            <div class="modal-body">
+                        {% for field in fields %}
+                            <div class="form-group">
+                                {{ include('MadefCmsBundle:AdminAjax:widget-field-' ~ field['type'] ~ '.html.twig', {'name': field['name'], 'label': field['label'], 'value': field['value']}) }}
+                            </div>
+                        {% endfor %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}admin.widget.modal.close{% endtrans %}</button>
+                    <button type="submit" class="btn btn-primary">{% trans %}admin.widget.modal.save{% endtrans %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

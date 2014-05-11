@@ -35,7 +35,7 @@ class VersionRepository extends EntityRepository
 
     /**
      * Get the list of version not published
-     * @return array
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getNotPublishedQuery()
     {
@@ -50,7 +50,7 @@ class VersionRepository extends EntityRepository
 
     /**
      * Get the list of version published
-     * @return array
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getPublishedQuery()
     {
@@ -65,7 +65,7 @@ class VersionRepository extends EntityRepository
 
     /**
      * Get default collection
-     * @return array
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getDefaultCollection()
     {
