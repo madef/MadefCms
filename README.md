@@ -42,8 +42,8 @@ mv composer.phar /usr/local/bin/composer
 
 Import the project using git:
 ```sh
-git clone https://github.com/madef/MadefCompta.git cms
-# OR git clone git@github.com:madef/MadefCompta.git cms
+git clone https://github.com/madef/MadefCms.git cms
+# OR git clone git@github.com:madef/MadefCms.git cms
 ```
 
 Create a database:
