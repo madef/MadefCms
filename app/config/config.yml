@@ -39,13 +39,10 @@ assetic:
     bundles:        [ MadefCmsBundle ]
     #java: /usr/bin/java
     filters:
-        less:
-            node: /usr/bin/lessc
-            node_paths: [/usr/lib/node_modules]
-            apply_to: "\.less$"
         cssrewrite: ~
 braincrafted_bootstrap:
-    less_filter: less
+    auto_configure:
+        assetic: false
 
 # Doctrine Configuration
 doctrine:
