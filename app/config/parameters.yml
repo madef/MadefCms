@@ -1,0 +1,15 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_sqlite
+    database_host: null
+    database_port: null
+    database_user: null
+    database_name: '%kernel.root_dir%/data/db.sqlite'
+    database_path: '%kernel.root_dir%/data/db.sqlite'
+    database_password: null
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    locale: en
+    secret: ThisTokenIsNotSoSecretChangeIt

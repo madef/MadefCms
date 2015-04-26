@@ -33,7 +33,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="Madef\CmsBundle\Entity\PageRepository")
- * @ORM\Table(name="page", uniqueConstraints={@ORM\UniqueConstraint(name="identifier_version", columns={"identifier", "version_id"})})
+ * @ORM\Table(name="page", uniqueConstraints={@ORM\UniqueConstraint(name="page_identifier_version", columns={"identifier", "version_id"})})
  */
 class Page
 {

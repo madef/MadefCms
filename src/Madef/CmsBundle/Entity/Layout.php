@@ -33,7 +33,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="Madef\CmsBundle\Entity\LayoutRepository")
- * @ORM\Table(name="layout", uniqueConstraints={@ORM\UniqueConstraint(name="identifier_version", columns={"identifier", "version_id"})})
+ * @ORM\Table(name="layout", uniqueConstraints={@ORM\UniqueConstraint(name="layout_identifier_version", columns={"identifier", "version_id"})})
  */
 class Layout
 {

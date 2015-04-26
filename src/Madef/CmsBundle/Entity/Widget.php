@@ -33,7 +33,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="Madef\CmsBundle\Entity\WidgetRepository")
- * @ORM\Table(name="widget", uniqueConstraints={@ORM\UniqueConstraint(name="identifier_version", columns={"identifier", "version_id"})})
+ * @ORM\Table(name="widget", uniqueConstraints={@ORM\UniqueConstraint(name="widget_identifier_version", columns={"identifier", "version_id"})})
  */
 class Widget
 {
