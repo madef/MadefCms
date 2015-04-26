@@ -142,9 +142,19 @@ class FrontController extends Controller
      * @param  \Madef\CmsBundle\Entity\Version $version
      * @return string
      */
-    public function renderWidget($widgetData, \Madef\CmsBundle\Entity\Version $version)
+    protected function renderWidget($widgetData, \Madef\CmsBundle\Entity\Version $version)
     {
         $widget = $this->getWidget($widgetData->identifier, $version);
+
+        if (isset($widgetData->vars)) {
+            $vars = (array) $widgetData->vars;
+        } else {
+            $vars = array();
+        }
+        $rendererClass = $widget->getFrontRenderer();
+        $renderer = new $rendererClass($widget, $vars);
+        return $renderer->render();
+
         $widgetTwigEnvironment = new \Twig_Environment(new \Twig_Loader_String());
         if (isset($widgetData->vars)) {
             $vars = (array) $widgetData->vars;

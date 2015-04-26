@@ -142,6 +142,7 @@ $(function() {
         });
         $('.js-structure-container').on('click', '.js-widget-item-configure', function() {
             var identifier = $(this).parent().attr('data-identifier');
+            var version = $('#form_version').val();
             if ($(this).parent().attr('data-vars').length) {
                 var vars = JSON.parse($(this).parent().attr('data-vars'));
             } else {
@@ -157,7 +158,7 @@ $(function() {
                 data: {
                     identifier: identifier,
                     vars: vars,
-                    fields: fields
+                    version: version
                 }
             }).done(function(data) {
                 var modal = $(data);

@@ -109,6 +109,26 @@ class AdminAjaxController extends Controller
 
         return new Response(json_encode($contentList));
     }
+
+    /**
+     *
+     * @param  string                          $identifier
+     * @param  \Madef\CmsBundle\Entity\Version $version
+     * @return \Madef\CmsBundle\Entity\Layout
+     * @throws \Exception
+     */
+    protected function getWidget($identifier, \Madef\CmsBundle\Entity\Version $version)
+    {
+        $widget = $this->getDoctrine()->getRepository('MadefCmsBundle:Widget')
+                ->findOneByVersion($identifier, $version);
+
+        if (!$widget) {
+            throw new \Exception($this->get('translator')->trans('admin.page.popin.widget.error.unknowwidget'));
+        }
+
+        return $widget;
+    }
+
     /**
      * Render widget form
      *
@@ -117,30 +137,13 @@ class AdminAjaxController extends Controller
      */
     public function renderWidgetFormAction(Request $request)
     {
-        $formatedFields = array();
         $identifier = $request->get('identifier');
+        $version = $this->getDoctrine()->getRepository('MadefCmsBundle:Version')->find($request->get('version'));
         $vars = $request->get('vars');
-        $fields = $request->get('fields');
-
-        if (!is_array($fields)) {
-            $fields = array();
-        }
-
-        foreach ($fields as $field) {
-            foreach ($field as $fieldName => $type) {
-                $formatedFields[] = array(
-                    'type' => $type,
-                    'name' => $fieldName,
-                    'label' => $this->get('translator')->trans('admin.widget.type.' . $identifier . '.label.' . $fieldName),
-                    'value' => (!empty($vars[$fieldName])) ? $vars[$fieldName] : '',
-                );
-            }
-        }
-
-        return $this->render('MadefCmsBundle:AdminAjax:widget-form.html.twig', array(
-            'widgetName' => $identifier,
-            'fields' => $formatedFields,
-        ));
+        $widget = $this->getWidget($identifier, $version);
+        $rendererClass = $widget->getBackRenderer();
+        $renderer = new $rendererClass($this, $widget, $vars);
+        return $renderer->render();
     }
 
     /**

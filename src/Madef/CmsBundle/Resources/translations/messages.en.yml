@@ -98,6 +98,10 @@ admin:
                         layout: Layout
                         view: Overview
                 title: List of pages
+        popin:
+            widget:
+                error:
+                    unknowwidget: No widget for this version
         field:
             structure:
                 remove:

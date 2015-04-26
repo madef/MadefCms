@@ -83,6 +83,16 @@ class AdminWidgetController extends Controller
                 'attr' => array(
                     'placeholder' => '{"title": "Hello", "content": "Hello world!"}',
             )))
+            ->add('front_renderer', 'text', array(
+                'attr' => array(
+                    'placeholder' => '\Madef\CmsBundle\Renderer\DefaultFrontRenderer',
+                    'value' => '\Madef\CmsBundle\Renderer\DefaultFrontRenderer',
+            )))
+            ->add('back_renderer', 'text', array(
+                'attr' => array(
+                    'placeholder' => '\Madef\CmsBundle\Renderer\DefaultBackRenderer',
+                    'value' => '\Madef\CmsBundle\Renderer\DefaultBackRenderer',
+            )))
             ->add('version', 'entity', array(
                 'class' => 'MadefCmsBundle:Version',
                 'empty_value'  => '',
@@ -154,6 +164,14 @@ class AdminWidgetController extends Controller
             ->add('default_content', 'textarea', array(
                 'attr' => array(
                     'placeholder' => '{"title": "Hello", "content": "Hello world!"}',
+            )))
+            ->add('front_renderer', 'text', array(
+                'attr' => array(
+                    'placeholder' => '\Madef\CmsBundle\Renderer\DefaultFrontRenderer',
+            )))
+            ->add('back_renderer', 'text', array(
+                'attr' => array(
+                    'placeholder' => '\Madef\CmsBundle\Renderer\DefaultBackRenderer',
             )))
             ->add('version', 'entity', array(
                 'class' => 'MadefCmsBundle:Version',

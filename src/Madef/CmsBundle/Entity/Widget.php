@@ -76,6 +76,18 @@ class Widget
     private $default_content;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     * @var string
+     */
+    private $front_renderer;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @var string
+     */
+    private $back_renderer;
+
+    /**
      * @ORM\Column(type="boolean")
      * @var Boolean
      */
@@ -258,5 +270,53 @@ class Widget
     public function getVersions()
     {
         return $this->versions;
+    }
+
+    /**
+     * Set front renderer class
+     *
+     * @param string $frontRenderer
+     *
+     * @return Widget
+     */
+    public function setFrontRenderer($frontRenderer)
+    {
+        $this->front_renderer = $frontRenderer;
+
+        return $this;
+    }
+
+    /**
+     * Get front renderer class
+     *
+     * @return string
+     */
+    public function getFrontRenderer()
+    {
+        return $this->front_renderer;
+    }
+
+    /**
+     * Set back renderer class
+     *
+     * @param string $backRenderer
+     *
+     * @return Widget
+     */
+    public function setBackRenderer($backRenderer)
+    {
+        $this->back_renderer = $backRenderer;
+
+        return $this;
+    }
+
+    /**
+     * Get back renderer class
+     *
+     * @return string
+     */
+    public function getBackRenderer()
+    {
+        return $this->back_renderer;
     }
 }
