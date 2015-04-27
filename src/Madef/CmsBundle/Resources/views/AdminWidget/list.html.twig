@@ -23,7 +23,7 @@
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                 {% trans %}admin.widget.page.list.table.action.edit{% endtrans %} <span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu" role="menu">
+                            <ul class="dropdown-menu align-left" role="menu">
                                 {% for version in widget.getVersions() %}
                                     <li><a href="{{ url('madef_cms_admin_widget_edit', {identifier: widget.getIdentifier(), version: version.getId()}) }}">{{ version.getIdentifier() }}</a></li>
                                 {% endfor %}

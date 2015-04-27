@@ -254,7 +254,7 @@ class Widget
     /**
      * Set Versions (non persistant)
      * @param  \Doctrine\Common\Collections\ArrayCollection $versions
-     * @return \Madef\CmsBundle\Entity\Page
+     * @return \Madef\CmsBundle\Entity\Widget
      */
     public function setVersions(ArrayCollection $versions)
     {
@@ -264,7 +264,7 @@ class Widget
     }
 
     /**
-     * Get versions (@see PageRepository:addVersions)
+     * Get versions (@see WidgetRepository:addVersions)
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getVersions()

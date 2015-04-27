@@ -40,7 +40,7 @@
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                 {% trans %}admin.page.page.list.table.action.edit{% endtrans %} <span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu" role="menu">
+                            <ul class="dropdown-menu text-left" role="menu">
                                 {% for version in page.getVersions() %}
                                     <li><a href="{{ url('madef_cms_admin_page_edit', {identifier: page.getIdentifier(), version: version.getId()}) }}">{{ version.getIdentifier() }}</a></li>
                                 {% endfor %}

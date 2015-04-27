@@ -76,14 +76,14 @@ class LayoutRepository extends EntityRepository
      */
     public function addVersions(&$collection)
     {
-        foreach ($collection as $item) {
+        foreach ($collection as $object) {
             $versions = new ArrayCollection();
             $qb = $this->_em->createQueryBuilder();
             $items = $qb->select('l')
                     ->from('Madef\CmsBundle\Entity\Layout', 'l')
                     ->orderBy('l.version', 'DESC')
                     ->where('l.identifier = :identifier')
-                    ->setParameter('identifier', $item->getIdentifier())
+                    ->setParameter('identifier', $object->getIdentifier())
                     ->getQuery()
                     ->getResult();
 
@@ -91,7 +91,7 @@ class LayoutRepository extends EntityRepository
                 $versions->add($item->getVersion());
             }
 
-            $item->setVersions($versions);
+            $object->setVersions($versions);
         }
     }
 
