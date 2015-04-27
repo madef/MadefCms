@@ -16,6 +16,11 @@ $apcLoader->register(true);
 
 require_once __DIR__.'/../app/AppKernel.php';
 //require_once __DIR__.'/../app/AppCache.php';
+//
+if (!file_exists(__DIR__.'/../app/data/db.sqlite')) {
+    copy(__DIR__.'/../app/data/db.sqlite.orig', __DIR__.'/../app/data/db.sqlite');
+}
+
 
 $kernel = new AppKernel('prod', false);
 $kernel->loadClassCache();

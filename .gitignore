@@ -2,7 +2,8 @@
 /web/bundles/
 /app/bootstrap.php.cache
 /app/cache/*
-/app/media/*
+/app/data/media/*
+/app/data/db.sqlite
 /app/logs/*
 !app/cache/.gitkeep
 !app/logs/.gitkeep
