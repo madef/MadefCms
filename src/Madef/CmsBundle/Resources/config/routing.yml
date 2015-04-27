@@ -41,16 +41,28 @@ madef_cms_admin_widget_list:
     defaults: { _controller: MadefCmsBundle:AdminWidget:list }
 
 madef_cms_admin_widget_add:
-    pattern:  /admin/{_locale}/widget/addpublish
+    pattern:  /admin/{_locale}/widget/add
     defaults: { _controller: MadefCmsBundle:AdminWidget:add }
 
 madef_cms_admin_widget_edit:
     pattern:  /admin/{_locale}/widget/{identifier}/{version}
     defaults: { _controller: MadefCmsBundle:AdminWidget:edit }
 
+madef_cms_admin_media_list:
+    pattern:  /admin/{_locale}/media
+    defaults: { _controller: MadefCmsBundle:AdminMedia:list }
+
 madef_cms_admin_version_list:
     pattern:  /admin/{_locale}/version
     defaults: { _controller: MadefCmsBundle:AdminVersion:list }
+
+madef_cms_admin_media_add:
+    pattern:  /admin/{_locale}/media/add
+    defaults: { _controller: MadefCmsBundle:AdminMedia:add }
+
+madef_cms_admin_media_edit:
+    pattern:  /admin/{_locale}/media/{identifier}/{version}
+    defaults: { _controller: MadefCmsBundle:AdminMedia:edit }
 
 madef_cms_admin_version_add:
     pattern:  /admin/{_locale}/version/add
@@ -90,3 +102,7 @@ madef_cms_front_display_versioned_page:
 madef_cms_front_display_page:
     pattern:  /{_locale}/{identifier}
     defaults: { _controller: MadefCmsBundle:Front:index, hashVersion: current, identifier: 'home' }
+
+madef_cms_front_display_media:
+     pattern:  /{_locale}/media/{identifier}/{version}
+     defaults: { _controller: MadefCmsBundle:Front:media }

@@ -30,6 +30,8 @@ namespace Madef\CmsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class FrontController extends Controller
 {
@@ -201,5 +203,26 @@ class FrontController extends Controller
         }
 
         return new Response($this->renderLayout($content, $layoutTemplate, $version));
+    }
+
+    /**
+     * Return media content
+     * @param  string $identifier
+     * @param  string $version
+     * @ParamConverter("version", class="MadefCmsBundle:Version")
+     * @return type
+     * @throws type
+     */
+    public function mediaAction($identifier, $version)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $media = $this->getDoctrine()->getRepository('MadefCmsBundle:Media')
+                ->findOneBy(array('identifier' => $identifier, 'version' => $version));
+
+        $response = new BinaryFileResponse($media->getUploadDir() . $media->getHash());
+        $response->headers->set('Content-Type', $media->getMimeType());
+
+        return $response;
     }
 }

@@ -43,6 +43,8 @@
                     <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_layout_add' %}active{% endif %}"><a href="{{ url('madef_cms_admin_layout_add') }}">+</a></li>
                     <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_widget_list' %}active{% endif %}"><a href="{{ url('madef_cms_admin_widget_list') }}">{% trans %}app.menu.widget{% endtrans %}</a></li>
                     <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_widget_add' %}active{% endif %}"><a href="{{ url('madef_cms_admin_widget_add') }}">+</a></li>
+                    <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_media_list' %}active{% endif %}"><a href="{{ url('madef_cms_admin_media_list') }}">{% trans %}app.menu.media{% endtrans %}</a></li>
+                    <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_media_add' %}active{% endif %}"><a href="{{ url('madef_cms_admin_media_add') }}">+</a></li>
                     <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_version_list' %}active{% endif %}"><a href="{{ url('madef_cms_admin_version_list') }}">{% trans %}app.menu.version{% endtrans %}</a></li>
                     <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_version_add' %}active{% endif %}"><a href="{{ url('madef_cms_admin_version_add') }}">+</a></li>
                 </ul>

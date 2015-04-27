@@ -8,6 +8,7 @@ app:
         page: Page
         parameters: Parameters
         users: Users
+        media: Media
         version: Version
         widget: Widget
     version: 0.4
@@ -129,6 +130,21 @@ admin:
             title: Configure widget "%widgetName%"
             close: Close
             save: Save changes
+    media:
+        page:
+            add:
+                title: Add a media
+            edit:
+                title: Edit a media
+            list:
+                table:
+                    action:
+                        add: Add a media
+                        edit: Edit a media
+                    header:
+                        edit: Modify
+                        identifier: Identifier
+                title: List of medias
     version:
         page:
             add:
