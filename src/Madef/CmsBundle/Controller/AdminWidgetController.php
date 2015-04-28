@@ -147,6 +147,8 @@ class AdminWidgetController extends Controller
             $widget->setForm($currentWidget->getForm());
             $widget->setTemplate($currentWidget->getTemplate());
             $widget->setDefaultContent($currentWidget->getDefaultContent());
+            $widget->setFrontRenderer($currentWidget->getFrontRenderer());
+            $widget->setBackRenderer($currentWidget->getBackRenderer());
             $widget->setRemoved(false);
         } else {
             $widget = $currentWidget;

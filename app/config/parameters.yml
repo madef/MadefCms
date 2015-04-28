@@ -5,7 +5,6 @@ parameters:
     database_port: null
     database_user: null
     database_name: '%kernel.root_dir%/data/db.sqlite'
-    database_path: '%kernel.root_dir%/data/db.sqlite'
     database_password: null
     mailer_transport: smtp
     mailer_host: 127.0.0.1
@@ -13,3 +12,4 @@ parameters:
     mailer_password: null
     locale: en
     secret: ThisTokenIsNotSoSecretChangeIt
+    database_path: '%kernel.root_dir%/data/db.sqlite'
