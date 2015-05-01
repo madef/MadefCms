@@ -1,0 +1,13 @@
+admin:
+    login: 
+        page:
+            title: Login
+        form:
+            title: Admin Area
+    accountedit:
+        page:
+            title: Account edition
+security:
+     login:
+         password: password
+         username: username

@@ -7,7 +7,9 @@
                 <th>{% trans %}admin.version.page.list.table.header.identifier{% endtrans %}</th>
                 <th class="hidden-xs text-center">{% trans %}admin.version.page.list.table.header.publication{% endtrans %}</th>
                 <th class="text-center">{% trans %}admin.version.page.list.table.header.status{% endtrans %}</th>
-                <th class="text-right">{% trans %}admin.version.page.list.table.header.action{% endtrans %}</th>
+                {% if is_granted('ROLE_PAGE_EDIT') %}
+                    <th class="text-right">{% trans %}admin.version.page.list.table.header.action{% endtrans %}</th>
+                {% endif %}
             </tr>
         </thead>
         <tfoot>
@@ -15,7 +17,9 @@
                 <th>{% trans %}admin.version.page.list.table.header.identifier{% endtrans %}</th>
                 <th class="hidden-xs text-center">{% trans %}admin.version.page.list.table.header.publication{% endtrans %}</th>
                 <th class="text-center">{% trans %}admin.version.page.list.table.header.status{% endtrans %}</th>
-                <th class="text-right">{% trans %}admin.version.page.list.table.header.action{% endtrans %}</th>
+                {% if is_granted('ROLE_PAGE_EDIT') %}
+                    <th class="text-right">{% trans %}admin.version.page.list.table.header.action{% endtrans %}</th>
+                {% endif %}
             </tr>
         </tfoot>
         <tbody>
@@ -38,14 +42,20 @@
                             <span class="label label-primary">{% trans %}admin.version.page.item.notpublished{% endtrans %}</span>
                         {% endif %}
                     </td>
-                    <td class="text-right">
-                        {% if (not version.getCurrent()) %}
-                            <a href="{{ url('madef_cms_admin_version_publish', {version: version.getId()}) }}" class="btn btn-primary" role="button">{% trans %}admin.version.page.list.table.action.publish{% endtrans %}</a>
-                        {% else %}
-                            <a href="#" class="btn btn-primary disabled" role="button">{% trans %}admin.version.page.list.table.action.publish{% endtrans %}</a>
-                        {% endif %}
-                    </td>
+                    {% if is_granted('ROLE_PAGE_EDIT') %}
+                        <td class="text-right">
+                            {% if (not version.getCurrent()) %}
+                                <a href="{{ url('madef_cms_admin_version_publish', {version: version.getId()}) }}" class="btn btn-primary" role="button">{% trans %}admin.version.page.list.table.action.publish{% endtrans %}</a>
+                            {% else %}
+                                <a href="#" class="btn btn-primary disabled" role="button">{% trans %}admin.version.page.list.table.action.publish{% endtrans %}</a>
+                            {% endif %}
+                        </td>
+                    {% endif %}
             {% else %}
-                <tr><td class="text-center" colspan="4"><a href="{{ url('madef_cms_admin_version_add') }}">{% trans %}admin.version.page.list.table.action.add{% endtrans %}</a></td></tr>
+                {% if is_granted('ROLE_PAGE_EDIT') %}
+                    <tr><td class="text-center" colspan="4"><a href="{{ url('madef_cms_admin_version_add') }}">{% trans %}admin.version.page.list.table.action.add{% endtrans %}</a></td></tr>
+                {% else %}
+                    <tr><td class="text-center" colspan="4">{% trans %}admin.version.page.list.table.noentries{% endtrans %}</td></tr>
+                {% endif %}
         {% endfor %}
 {% endblock %}

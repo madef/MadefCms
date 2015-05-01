@@ -61,7 +61,20 @@ class AdminHomeController extends Controller
             $step = 'publish';
         } else {
             $step = 'final';
-            return $this->redirect($this->generateUrl('madef_cms_admin_page_list'));
+            $securityContext = $this->container->get('security.context');
+            if ($securityContext->isGranted('ROLE_PAGE_VIEW')) {
+                return $this->redirect($this->generateUrl('madef_cms_admin_page_list'));
+            } else if ($securityContext->isGranted('ROLE_LAYOUT')) {
+                return $this->redirect($this->generateUrl('madef_cms_admin_layout_list'));
+            } else if ($securityContext->isGranted('ROLE_WIDGET')) {
+                return $this->redirect($this->generateUrl('madef_cms_admin_widget_list'));
+            } else if ($securityContext->isGranted('ROLE_MEDIA')) {
+                return $this->redirect($this->generateUrl('madef_cms_admin_media_list'));
+            } else if ($securityContext->isGranted('ROLE_VERSION_VIEW')) {
+                return $this->redirect($this->generateUrl('madef_cms_admin_version_list'));
+            } else {
+                throw $this->createNotFoundException('Not enought right');
+            }
         }
 
         return $this->render('MadefCmsBundle:AdminHome:step-' . $step . '.html.twig');

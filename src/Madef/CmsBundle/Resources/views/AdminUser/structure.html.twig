@@ -1,0 +1,17 @@
+<div class="container-fluid">
+    {% for row in structure %}
+        <div class="row">
+            {% for column in row %}
+                {% for itemContainer in column %}
+                    {% for item, size in itemContainer %}
+                        <div class="col-md-{{ size }}" class="{{ item }}">
+                            <div class="structure__block-area" data-identifier="{{ item }}">
+                                <div class="structure__block-area-container container-fluid js-sortable-column js-sortable-column-final" data-identifier="{{ item }}"></div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>

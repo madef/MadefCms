@@ -72,6 +72,18 @@ madef_cms_admin_version_publish:
     pattern:  /admin/{_locale}/version/publish/{version}
     defaults: { _controller: MadefCmsBundle:AdminVersion:publish }
 
+madef_cms_admin_user_list:
+    pattern:  /admin/{_locale}/user
+    defaults: { _controller: MadefCmsBundle:AdminUser:list }
+
+madef_cms_admin_user_add:
+    pattern:  /admin/{_locale}/user/add
+    defaults: { _controller: MadefCmsBundle:AdminUser:add }
+
+madef_cms_admin_user_edit:
+    pattern:  /admin/{_locale}/user/edit/{user}
+    defaults: { _controller: MadefCmsBundle:AdminUser:edit }
+
 madef_cms_admin_ajax_widgets_and_layouts:
     pattern:  /admin/{_locale}/ajax/widgets-and-layouts
     defaults: { _controller: MadefCmsBundle:AdminAjax:widgetsAndLayouts }

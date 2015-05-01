@@ -1,4 +1,7 @@
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+    prefix:   /account
+
 madef_cms:
     resource: "@MadefCmsBundle/Resources/config/routing.yml"
     prefix:   /
-

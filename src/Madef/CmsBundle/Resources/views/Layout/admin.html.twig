@@ -22,46 +22,63 @@
             {% endstylesheets %}
         {% endblock %}
     </head>
-    <body role="document">
-    <!-- Static navbar -->
-    <div class="navbar navbar-default navbar-static-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="{{ url('madef_cms_admin_home') }}">{% trans %}app.title{% endtrans %}</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_page_list' %}active{% endif %}"><a href="{{ url('madef_cms_admin_page_list') }}">{% trans %}app.menu.page{% endtrans %}</a></li>
-                    <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_page_add' %}active{% endif %}"><a href="{{ url('madef_cms_admin_page_add') }}">+</a></li>
-                    <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_layout_list' %}active{% endif %}"><a href="{{ url('madef_cms_admin_layout_list') }}">{% trans %}app.menu.layout{% endtrans %}</a></li>
-                    <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_layout_add' %}active{% endif %}"><a href="{{ url('madef_cms_admin_layout_add') }}">+</a></li>
-                    <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_widget_list' %}active{% endif %}"><a href="{{ url('madef_cms_admin_widget_list') }}">{% trans %}app.menu.widget{% endtrans %}</a></li>
-                    <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_widget_add' %}active{% endif %}"><a href="{{ url('madef_cms_admin_widget_add') }}">+</a></li>
-                    <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_media_list' %}active{% endif %}"><a href="{{ url('madef_cms_admin_media_list') }}">{% trans %}app.menu.media{% endtrans %}</a></li>
-                    <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_media_add' %}active{% endif %}"><a href="{{ url('madef_cms_admin_media_add') }}">+</a></li>
-                    <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_version_list' %}active{% endif %}"><a href="{{ url('madef_cms_admin_version_list') }}">{% trans %}app.menu.version{% endtrans %}</a></li>
-                    <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_version_add' %}active{% endif %}"><a href="{{ url('madef_cms_admin_version_add') }}">+</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans %}app.menu.parameters{% endtrans %} <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">{% trans %}app.menu.myaccount{% endtrans %}</a></li>
-                            <li><a href="#">{% trans %}app.menu.users{% endtrans %}</a></li>
-                            <li><a href="#">{% trans %}app.menu.groups{% endtrans %}</a></li>
+    <body class="{% block body_class %}{% endblock %}" role="document">
+        {% block navigation %}
+            <!-- Static navbar -->
+            <div class="navbar navbar-default navbar-static-top" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="{{ url('madef_cms_admin_home') }}">{% trans %}app.title{% endtrans %}</a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            {% if is_granted('ROLE_PAGE_VIEW') %}
+                                <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_page_list' %}active{% endif %}"><a href="{{ url('madef_cms_admin_page_list') }}">{% trans %}app.menu.page{% endtrans %}</a></li>
+                            {% endif %}
+                            {% if is_granted('ROLE_PAGE_EDIT') %}
+                                <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_page_add' %}active{% endif %}"><a href="{{ url('madef_cms_admin_page_add') }}">+</a></li>
+                            {% endif %}
+                            {% if is_granted('ROLE_LAYOUT') %}
+                                <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_layout_list' %}active{% endif %}"><a href="{{ url('madef_cms_admin_layout_list') }}">{% trans %}app.menu.layout{% endtrans %}</a></li>
+                                <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_layout_add' %}active{% endif %}"><a href="{{ url('madef_cms_admin_layout_add') }}">+</a></li>
+                            {% endif %}
+                            {% if is_granted('ROLE_WIDGET') %}
+                                <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_widget_list' %}active{% endif %}"><a href="{{ url('madef_cms_admin_widget_list') }}">{% trans %}app.menu.widget{% endtrans %}</a></li>
+                                <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_widget_add' %}active{% endif %}"><a href="{{ url('madef_cms_admin_widget_add') }}">+</a></li>
+                            {% endif %}
+                            {% if is_granted('ROLE_MEDIA') %}
+                                <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_media_list' %}active{% endif %}"><a href="{{ url('madef_cms_admin_media_list') }}">{% trans %}app.menu.media{% endtrans %}</a></li>
+                                <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_media_add' %}active{% endif %}"><a href="{{ url('madef_cms_admin_media_add') }}">+</a></li>
+                            {% endif %}
+                            {% if is_granted('ROLE_VERSION_VIEW') %}
+                                <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_version_list' %}active{% endif %}"><a href="{{ url('madef_cms_admin_version_list') }}">{% trans %}app.menu.version{% endtrans %}</a></li>
+                            {% endif %}
+                            {% if is_granted('ROLE_VERSION_EDIT') %}
+                                <li class="{% if app.request.attributes.get('_route') == 'madef_cms_admin_version_add' %}active{% endif %}"><a href="{{ url('madef_cms_admin_version_add') }}">+</a></li>
+                            {% endif %}
                         </ul>
-                    </li>
-                    <li><a href="#">Logout</a></li>
-                </ul>
-            </div><!--/.nav-collapse -->
-        </div>
-    </div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans %}app.menu.parameters{% endtrans %} <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ url('fos_user_profile_edit') }}">{% trans %}app.menu.myaccount{% endtrans %}</a></li>
+                                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                        <li><a href="{{ url('madef_cms_admin_user_list') }}">{% trans %}app.menu.users{% endtrans %}</a></li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                            <li><a href="{{ url('fos_user_security_logout') }}">Logout</a></li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        {% endblock %}
         <div class="container" role="main">
             {% block content %}
             {% endblock %}

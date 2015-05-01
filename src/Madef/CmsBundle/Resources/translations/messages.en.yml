@@ -93,6 +93,7 @@ admin:
                         add: Add a page
                         edit: Modify
                         overview: Overview
+                    noentries: No entries
                     header:
                         edit: Modify
                         identifier: Path / Identifier
@@ -107,6 +108,34 @@ admin:
             structure:
                 remove:
                     confirm: Are you sure?
+    user:
+        page:
+            list:
+                adduser: Add a user
+                title: List of users
+                table:
+                    action:
+                        add: Add a user
+                        edit: Edit
+                    header:
+                        actions: Actions
+                        roles: Roles
+                        username: Username
+            add:
+                title: Create a user
+            edit:
+                title: Edit a user
+        field:
+            password: Password
+            role:
+                pageview: View pages
+                pageedit: Can edit pages
+                versionview: View versions
+                versionedit: Publish versions
+                widget: View and edit widgets
+                layout: View and edit layouts
+                media: View and edit media
+                super: Is a super admin
     widget:
         page:
             add:
@@ -158,13 +187,13 @@ admin:
                     action:
                         add: Create a version
                         publish: Publish
+                    noentries: No entries
                     header:
                         action: Action
                         identifier: Identifier
                         publication: Date of publication
                         status: Status
                 title: List of versions
-
 
 # Front section
 front:

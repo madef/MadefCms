@@ -1,0 +1,46 @@
+{% extends "MadefCmsBundle:Layout:admin.html.twig" %}
+{% block title %}{% trans %}admin.user.page.list.title{% endtrans %}{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <p class="text-right">
+                <a href="{{ url('madef_cms_admin_user_add') }}" class="btn btn-primary">{% trans %}admin.user.page.list.adduser{% endtrans %}</a>
+            </p>
+        </div>
+        <div class="col-md-12">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>{% trans %}admin.user.page.list.table.header.username{% endtrans %}</th>
+                        <th>{% trans %}admin.user.page.list.table.header.roles{% endtrans %}</th>
+                        <th class="text-right">{% trans %}admin.user.page.list.table.header.actions{% endtrans %}</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>{% trans %}admin.user.page.list.table.header.username{% endtrans %}</th>
+                        <th>{% trans %}admin.user.page.list.table.header.roles{% endtrans %}</th>
+                        <th class="text-right">{% trans %}admin.user.page.list.table.header.actions{% endtrans %}</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user.getUsername() }}</td>
+                            <td>{{ user.getRoles()|join(', ')|replace({'ROLE_': ''})|lower }}</td>
+                            <td class="text-right">
+                                <div class="btn-group">
+                                    <a href="{{ url('madef_cms_admin_user_edit', {user: user.id}) }}" class="btn btn-default">
+                                        {% trans %}admin.user.page.list.table.action.edit{% endtrans %}
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr><td class="text-center" colspan="2"><a href="{{ url('madef_cms_admin_user_add') }}">{% trans %}admin.user.page.list.table.action.add{% endtrans %}</a></td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -20,7 +20,8 @@
         "sensio/generator-bundle": "~2.3",
         "incenteev/composer-parameter-handler": "~2.0",
         "braincrafted/bootstrap-bundle": "~2.0",
-        "piwi/markdown-extended": "dev-master"
+        "piwi/markdown-extended": "dev-master",
+        "friendsofsymfony/user-bundle": "~2.0@dev"
     },
     "scripts": {
         "post-install-cmd": [
