@@ -167,6 +167,9 @@ $(function() {
                 var element = $(this);
 
                 modal.on('shown.bs.modal', function() {
+                    $(this).find('textarea').each(function() {
+                        new Autoresize(this);
+                    });
                     $('.js-modal-form').submit(function() {
                         var values = {};
                         $.each($(this).serializeArray(), function(key, data) {
