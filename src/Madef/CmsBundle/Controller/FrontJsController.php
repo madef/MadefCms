@@ -26,39 +26,19 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Madef\CmsBundle\Renderer;
+namespace Madef\CmsBundle\Controller;
 
-abstract class AbstractFrontRenderer
+class FrontJsController extends AbstractFrontAssetController
 {
-    protected $widget;
-    protected $vars;
+    protected $type = self::TYPE_JS;
 
     /**
+     * Get Js content of the widget.
      *
-     * @param  \Madef\CmsBundle\Entity\Widget $widget
-     * @param  array                          $vars
-     * @return string
+     * @param $widget \Madef\CmsBundle\Entity\Widget
      */
-    public function __construct(\Madef\CmsBundle\Entity\Widget $widget, $vars)
+    protected function getWidgetAsset($widget)
     {
-        $this->widget = $widget;
-        $this->vars = $vars;
+        return $widget->getJs();
     }
-
-    /**
-     *
-     * @return string
-     */
-    public function render()
-    {
-        $widgetTwigEnvironment = new \Twig_Environment(new \Twig_Loader_String());
-        $widgetTwigEnvironment->addFunction(new \Twig_SimpleFunction('url', function($url) {
-                return $this->generateUrl($url);
-        }));
-
-        return $widgetTwigEnvironment->render($this->widget->getTemplate(), $this->getData());
-    }
-
-    abstract protected function getData();
 }
-

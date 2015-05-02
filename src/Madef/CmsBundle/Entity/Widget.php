@@ -76,6 +76,18 @@ class Widget
     private $default_content;
 
     /**
+     * @ORM\Column(type="text", nullable=true)
+     * @var string
+     */
+    private $js;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     * @var string
+     */
+    private $css;
+
+    /**
      * @ORM\Column(type="string", length=255)
      * @var string
      */
@@ -206,6 +218,102 @@ class Widget
     }
 
     /**
+     * Set js
+     *
+     * @param string $js
+     *
+     * @return Widget
+     */
+    public function setJs($js)
+    {
+        $this->js = $js;
+
+        return $this;
+    }
+
+    /**
+     * Get js
+     *
+     * @return string
+     */
+    public function getJs()
+    {
+        return $this->js;
+    }
+
+    /**
+     * Set css
+     *
+     * @param string $css
+     *
+     * @return Widget
+     */
+    public function setCss($css)
+    {
+        $this->css = $css;
+
+        return $this;
+    }
+
+    /**
+     * Get css
+     *
+     * @return string
+     */
+    public function getCss()
+    {
+        return $this->css;
+    }
+
+    /**
+     * Set front renderer class
+     *
+     * @param string $frontRenderer
+     *
+     * @return Widget
+     */
+    public function setFrontRenderer($frontRenderer)
+    {
+        $this->front_renderer = $frontRenderer;
+
+        return $this;
+    }
+
+    /**
+     * Get front renderer class
+     *
+     * @return string
+     */
+    public function getFrontRenderer()
+    {
+        return $this->front_renderer;
+    }
+
+    /**
+     * Set back renderer class
+     *
+     * @param string $backRenderer
+     *
+     * @return Widget
+     */
+    public function setBackRenderer($backRenderer)
+    {
+        $this->back_renderer = $backRenderer;
+
+        return $this;
+    }
+
+    /**
+     * Get back renderer class
+     *
+     * @return string
+     */
+    public function getBackRenderer()
+    {
+        return $this->back_renderer;
+    }
+
+    /**
      * Set removed
      *
      * @param  boolean $removed
@@ -270,53 +378,5 @@ class Widget
     public function getVersions()
     {
         return $this->versions;
-    }
-
-    /**
-     * Set front renderer class
-     *
-     * @param string $frontRenderer
-     *
-     * @return Widget
-     */
-    public function setFrontRenderer($frontRenderer)
-    {
-        $this->front_renderer = $frontRenderer;
-
-        return $this;
-    }
-
-    /**
-     * Get front renderer class
-     *
-     * @return string
-     */
-    public function getFrontRenderer()
-    {
-        return $this->front_renderer;
-    }
-
-    /**
-     * Set back renderer class
-     *
-     * @param string $backRenderer
-     *
-     * @return Widget
-     */
-    public function setBackRenderer($backRenderer)
-    {
-        $this->back_renderer = $backRenderer;
-
-        return $this;
-    }
-
-    /**
-     * Get back renderer class
-     *
-     * @return string
-     */
-    public function getBackRenderer()
-    {
-        return $this->back_renderer;
     }
 }

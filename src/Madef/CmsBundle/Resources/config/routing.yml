@@ -103,6 +103,18 @@ madef_cms_admin_ajax_render_structure:
 
 # Front office
 
+madef_cms_front_display_css:
+     pattern:  /css/{page}/{version}
+     defaults: { _controller: MadefCmsBundle:FrontCss:get }
+
+madef_cms_front_display_js:
+     pattern:  /js/{page}/{version}
+     defaults: { _controller: MadefCmsBundle:FrontJs:get }
+
+madef_cms_front_display_media:
+     pattern:  /{_locale}/media/{identifier}/{version}
+     defaults: { _controller: MadefCmsBundle:Front:media }
+
 madef_cms_front_language_router:
     pattern:  /
     defaults: { _controller: MadefCmsBundle:Language:frontRoute }
@@ -114,7 +126,3 @@ madef_cms_front_display_versioned_page:
 madef_cms_front_display_page:
     pattern:  /{_locale}/{identifier}
     defaults: { _controller: MadefCmsBundle:Front:index, hashVersion: current, identifier: 'home' }
-
-madef_cms_front_display_media:
-     pattern:  /{_locale}/media/{identifier}/{version}
-     defaults: { _controller: MadefCmsBundle:Front:media }

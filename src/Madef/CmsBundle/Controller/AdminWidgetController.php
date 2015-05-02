@@ -37,7 +37,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class AdminWidgetController extends Controller
 {
     /**
-     *
      * @return type
      */
     public function listAction()
@@ -54,9 +53,10 @@ class AdminWidgetController extends Controller
     }
 
     /**
-     * Display form to create a Widget
+     * Display form to create a Widget.
      *
-     * @param  \Symfony\Component\HttpFoundation\Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
      * @return type
      */
     public function addAction(Request $request)
@@ -70,29 +70,31 @@ class AdminWidgetController extends Controller
             ->add('identifier', 'text', array(
                 'attr' => array(
                     'placeholder' => 'widget-identifier',
-            )))
+            ), ))
             ->add('form', 'textarea', array(
                 'attr' => array(
                     'placeholder' => '[{"title": "text"}, {"content": "textarea"}]',
-            )))
+            ), ))
             ->add('template', 'textarea', array(
                 'attr' => array(
                     'placeholder' => '<h2>{{ title }}</h2><p>{{content}}</p>',
-            )))
+            ), ))
             ->add('default_content', 'textarea', array(
                 'attr' => array(
                     'placeholder' => '{"title": "Hello", "content": "Hello world!"}',
-            )))
+            ), ))
+            ->add('css', 'textarea')
+            ->add('js', 'textarea')
             ->add('front_renderer', 'text', array(
                 'attr' => array(
                     'placeholder' => '\Madef\CmsBundle\Renderer\DefaultFrontRenderer',
                     'value' => '\Madef\CmsBundle\Renderer\DefaultFrontRenderer',
-            )))
+            ), ))
             ->add('back_renderer', 'text', array(
                 'attr' => array(
                     'placeholder' => '\Madef\CmsBundle\Renderer\DefaultBackRenderer',
                     'value' => '\Madef\CmsBundle\Renderer\DefaultBackRenderer',
-            )))
+            ), ))
             ->add('version', 'entity', array(
                 'class' => 'MadefCmsBundle:Version',
                 'empty_value'  => '',
@@ -120,13 +122,14 @@ class AdminWidgetController extends Controller
     }
 
     /**
-     * Display form to edit a Page
+     * Display form to edit a Page.
      *
      * @ParamConverter("version", class="MadefCmsBundle:Version")
      *
-     * @param  \Symfony\Component\HttpFoundation\Request $request
-     * @param  string                                    $identifier
-     * @param  string                                    $version
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param string                                    $identifier
+     * @param string                                    $version
+     *
      * @return type
      */
     public function editAction(Request $request, $identifier, $version)
@@ -158,23 +161,25 @@ class AdminWidgetController extends Controller
             ->add('form', 'textarea', array(
                 'attr' => array(
                     'placeholder' => '[{"title": "text"}, {"content": "textarea"}]',
-            )))
+            ), ))
             ->add('template', 'textarea', array(
                 'attr' => array(
                     'placeholder' => '<h2>{{ title }}</h2><p>{{content}}</p>',
-            )))
+            ), ))
             ->add('default_content', 'textarea', array(
                 'attr' => array(
                     'placeholder' => '{"title": "Hello", "content": "Hello world!"}',
-            )))
+            ), ))
+            ->add('css', 'textarea')
+            ->add('js', 'textarea')
             ->add('front_renderer', 'text', array(
                 'attr' => array(
                     'placeholder' => '\Madef\CmsBundle\Renderer\DefaultFrontRenderer',
-            )))
+            ), ))
             ->add('back_renderer', 'text', array(
                 'attr' => array(
                     'placeholder' => '\Madef\CmsBundle\Renderer\DefaultBackRenderer',
-            )))
+            ), ))
             ->add('version', 'entity', array(
                 'class' => 'MadefCmsBundle:Version',
                 'empty_value'  => '',
