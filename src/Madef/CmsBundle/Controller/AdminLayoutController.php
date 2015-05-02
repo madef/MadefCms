@@ -37,7 +37,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class AdminLayoutController extends Controller
 {
     /**
-     *
      * @return type
      */
     public function listAction()
@@ -54,9 +53,10 @@ class AdminLayoutController extends Controller
     }
 
     /**
-     * Display form to create a Layout
+     * Display form to create a Layout.
      *
-     * @param  \Symfony\Component\HttpFoundation\Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
      * @return type
      */
     public function addAction(Request $request)
@@ -70,21 +70,21 @@ class AdminLayoutController extends Controller
             ->add('identifier', 'text', array(
                 'attr' => array(
                     'placeholder' => 'layout-identifier',
-            )))
+            ), ))
             ->add('structure', 'textarea', array(
                 'attr' => array(
                     'placeholder' => '['
-                    . '  [[{"head": 12}]],'
-                    . '  [[{"header": 12}]],'
-                    . '  [[{"leftcolumn": 4}], [{"rightcolumn" => 8}]],'
-                    . '  [[{"footer": 12}]]'
-                    . ']',
-            )))
+                    .'  [[{"head": 12}]],'
+                    .'  [[{"header": 12}]],'
+                    .'  [[{"leftcolumn": 4}], [{"rightcolumn" => 8}]],'
+                    .'  [[{"footer": 12}]]'
+                    .']',
+            ), ))
             ->add('template', 'textarea')
             ->add('default_content', 'textarea', array(
                 'attr' => array(
                     'placeholder' => '{}',
-            )))
+            ), ))
             ->add('version', 'entity', array(
                 'class' => 'MadefCmsBundle:Version',
                 'empty_value'  => '',
@@ -112,13 +112,14 @@ class AdminLayoutController extends Controller
     }
 
     /**
-     * Display form to edit a Page
+     * Display form to edit a Page.
      *
      * @ParamConverter("version", class="MadefCmsBundle:Version")
      *
-     * @param  \Symfony\Component\HttpFoundation\Request $request
-     * @param  string                                    $identifier
-     * @param  string                                    $version
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param string                                    $identifier
+     * @param string                                    $version
+     *
      * @return type
      */
     public function editAction(Request $request, $identifier, $version)
@@ -148,17 +149,17 @@ class AdminLayoutController extends Controller
             ->add('structure', 'textarea', array(
                 'attr' => array(
                     'placeholder' => '['
-                    . '  [[{"head": 12}]],'
-                    . '  [[{"header": 12}]],'
-                    . '  [[{"leftcolumn": 4}], [{"rightcolumn" => 8}]],'
-                    . '  [[{"footer": 12}]]'
-                    . ']',
-            )))
+                    .'  [[{"head": 12}]],'
+                    .'  [[{"header": 12}]],'
+                    .'  [[{"leftcolumn": 4}], [{"rightcolumn" => 8}]],'
+                    .'  [[{"footer": 12}]]'
+                    .']',
+            ), ))
             ->add('template', 'textarea')
             ->add('default_content', 'textarea', array(
                 'attr' => array(
                     'placeholder' => '{}',
-            )))
+            ), ))
             ->add('version', 'entity', array(
                 'class' => 'MadefCmsBundle:Version',
                 'empty_value'  => '',

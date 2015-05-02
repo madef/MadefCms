@@ -37,9 +37,10 @@ use Symfony\Component\HttpFoundation\Response;
 class AdminAjaxController extends Controller
 {
     /**
-     * Display form to create a Layout
+     * Display form to create a Layout.
      *
-     * @param  \Symfony\Component\HttpFoundation\Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
      * @return type
      */
     public function widgetsAndLayoutsAction(Request $request)
@@ -74,14 +75,15 @@ class AdminAjaxController extends Controller
         return new Response(json_encode(array(
             'layoutList' => $layoutList,
             'widgetList' => $widgetList,
-            'widgetListHtml' => $this->renderView('MadefCmsBundle:AdminAjax:widget-list.html.twig', array('widgetList' => $widgetList))
+            'widgetListHtml' => $this->renderView('MadefCmsBundle:AdminAjax:widget-list.html.twig', array('widgetList' => $widgetList)),
         )));
     }
 
     /**
-     * Render content of the stucture (drag & dropable items)
+     * Render content of the stucture (drag & dropable items).
      *
-     * @param  \Symfony\Component\HttpFoundation\Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
      * @return type
      */
     public function renderContentAction(Request $request)
@@ -111,10 +113,11 @@ class AdminAjaxController extends Controller
     }
 
     /**
+     * @param string                          $identifier
+     * @param \Madef\CmsBundle\Entity\Version $version
      *
-     * @param  string                          $identifier
-     * @param  \Madef\CmsBundle\Entity\Version $version
      * @return \Madef\CmsBundle\Entity\Layout
+     *
      * @throws \Exception
      */
     protected function getWidget($identifier, \Madef\CmsBundle\Entity\Version $version)
@@ -130,9 +133,10 @@ class AdminAjaxController extends Controller
     }
 
     /**
-     * Render widget form
+     * Render widget form.
      *
-     * @param  \Symfony\Component\HttpFoundation\Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
      * @return type
      */
     public function renderWidgetFormAction(Request $request)
@@ -143,13 +147,15 @@ class AdminAjaxController extends Controller
         $widget = $this->getWidget($identifier, $version);
         $rendererClass = $widget->getBackRenderer();
         $renderer = new $rendererClass($this, $widget, $vars);
+
         return $renderer->render();
     }
 
     /**
-     * Render structure of a layout
+     * Render structure of a layout.
      *
-     * @param  \Symfony\Component\HttpFoundation\Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
      * @return type
      */
     public function renderStructureAction(Request $request)

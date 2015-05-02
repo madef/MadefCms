@@ -45,38 +45,43 @@ class Version
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
+     *
      * @var string
      */
     private $identifier;
 
     /**
      * @ORM\Column(type="string", length=16, unique=true)
+     *
      * @var string
      */
     private $hash;
 
     /**
      * @ORM\Column(type="boolean")
+     *
      * @var Boolean
      */
     private $current;
 
     /**
      * @ORM\Column(type="datetime")
+     *
      * @var \DateTime
      */
     private $created_at;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     *
      * @var \DateTime
      */
     private $published_at;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -84,9 +89,10 @@ class Version
     }
 
     /**
-     * Set identifier
+     * Set identifier.
      *
-     * @param  string  $identifier
+     * @param string $identifier
+     *
      * @return Version
      */
     public function setIdentifier($identifier)
@@ -97,7 +103,7 @@ class Version
     }
 
     /**
-     * Get identifier
+     * Get identifier.
      *
      * @return string
      */
@@ -107,9 +113,10 @@ class Version
     }
 
     /**
-     * Set hash
+     * Set hash.
      *
-     * @param  string  $hash
+     * @param string $hash
+     *
      * @return Version
      */
     public function setHash($hash)
@@ -120,7 +127,7 @@ class Version
     }
 
     /**
-     * Get hash
+     * Get hash.
      *
      * @return string
      */
@@ -130,9 +137,10 @@ class Version
     }
 
     /**
-     * Set current
+     * Set current.
      *
-     * @param  boolean $current
+     * @param bool $current
+     *
      * @return Version
      */
     public function setCurrent($current)
@@ -143,9 +151,9 @@ class Version
     }
 
     /**
-     * Get current
+     * Get current.
      *
-     * @return boolean
+     * @return bool
      */
     public function getCurrent()
     {
@@ -153,9 +161,10 @@ class Version
     }
 
     /**
-     * Set created_at
+     * Set created_at.
      *
-     * @param  \DateTime $created_at
+     * @param \DateTime $created_at
+     *
      * @return Version
      */
     public function setCreatedAt($created_at)
@@ -166,7 +175,7 @@ class Version
     }
 
     /**
-     * Get created_at
+     * Get created_at.
      *
      * @return \DateTime
      */
@@ -176,9 +185,10 @@ class Version
     }
 
     /**
-     * Set published_at
+     * Set published_at.
      *
-     * @param  \DateTime $published_at
+     * @param \DateTime $published_at
+     *
      * @return Version
      */
     public function setPublishedAt($published_at)
@@ -189,7 +199,7 @@ class Version
     }
 
     /**
-     * Get published_at
+     * Get published_at.
      *
      * @return \DateTime
      */
@@ -204,7 +214,7 @@ class Version
     }
 
     /**
-     * Get created_at
+     * Get created_at.
      *
      * @return \DateTime
      */

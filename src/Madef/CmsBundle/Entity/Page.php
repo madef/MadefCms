@@ -46,6 +46,7 @@ class Page
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      * @var string
      */
     private $identifier;
@@ -53,24 +54,28 @@ class Page
     /**
      * @ORM\ManyToOne(targetEntity="Version")
      * @ORM\JoinColumn(name="version_id", referencedColumnName="id")
+     *
      * @var \Madef\CmsBundle\Entity\Version
      */
     private $version;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      * @var string
      */
     private $layout_identifier;
 
     /**
      * @ORM\Column(type="text")
+     *
      * @var string
      */
     private $content;
 
     /**
      * @ORM\Column(type="boolean")
+     *
      * @var Boolean
      */
     private $removed;
@@ -86,9 +91,9 @@ class Page
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -96,9 +101,10 @@ class Page
     }
 
     /**
-     * Set identifier
+     * Set identifier.
      *
-     * @param  string $identifier
+     * @param string $identifier
+     *
      * @return Page
      */
     public function setIdentifier($identifier)
@@ -109,7 +115,7 @@ class Page
     }
 
     /**
-     * Get identifier
+     * Get identifier.
      *
      * @return string
      */
@@ -119,9 +125,10 @@ class Page
     }
 
     /**
-     * Set path
+     * Set path.
      *
-     * @param  string $path
+     * @param string $path
+     *
      * @return Page
      */
     public function setPath($path)
@@ -132,7 +139,7 @@ class Page
     }
 
     /**
-     * Get path
+     * Get path.
      *
      * @return string
      */
@@ -142,9 +149,10 @@ class Page
     }
 
     /**
-     * Set content
+     * Set content.
      *
-     * @param  string $content
+     * @param string $content
+     *
      * @return Page
      */
     public function setContent($content)
@@ -155,7 +163,7 @@ class Page
     }
 
     /**
-     * Get content
+     * Get content.
      *
      * @return string
      */
@@ -165,9 +173,10 @@ class Page
     }
 
     /**
-     * Set removed
+     * Set removed.
      *
-     * @param  boolean $removed
+     * @param bool $removed
+     *
      * @return Page
      */
     public function setRemoved($removed)
@@ -178,9 +187,9 @@ class Page
     }
 
     /**
-     * Get removed
+     * Get removed.
      *
-     * @return boolean
+     * @return bool
      */
     public function getRemoved()
     {
@@ -188,9 +197,10 @@ class Page
     }
 
     /**
-     * Set version
+     * Set version.
      *
-     * @param  \Madef\CmsBundle\Entity\Version $version
+     * @param \Madef\CmsBundle\Entity\Version $version
+     *
      * @return Page
      */
     public function setVersion(\Madef\CmsBundle\Entity\Version $version = null)
@@ -201,7 +211,7 @@ class Page
     }
 
     /**
-     * Get version
+     * Get version.
      *
      * @return \Madef\CmsBundle\Entity\Version
      */
@@ -211,9 +221,10 @@ class Page
     }
 
     /**
-     * Set layout_identifier
+     * Set layout_identifier.
      *
-     * @param  string $layoutIdentifier
+     * @param string $layoutIdentifier
+     *
      * @return Page
      */
     public function setLayoutIdentifier($layoutIdentifier)
@@ -224,7 +235,7 @@ class Page
     }
 
     /**
-     * Get layout_identifier
+     * Get layout_identifier.
      *
      * @return string
      */
@@ -234,8 +245,10 @@ class Page
     }
 
     /**
-     * Set Versions (non persistant)
-     * @param  \Doctrine\Common\Collections\ArrayCollection $versions
+     * Set Versions (non persistant).
+     *
+     * @param \Doctrine\Common\Collections\ArrayCollection $versions
+     *
      * @return \Madef\CmsBundle\Entity\Page
      */
     public function setVersions(ArrayCollection $versions)
@@ -246,7 +259,8 @@ class Page
     }
 
     /**
-     * Get versions (@see PageRepository:addVersions)
+     * Get versions (@see PageRepository:addVersions).
+     *
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getVersions()

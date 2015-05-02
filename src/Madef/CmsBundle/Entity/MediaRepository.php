@@ -34,7 +34,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 class MediaRepository extends EntityRepository
 {
     /**
-     * Get the list of identifiers
+     * Get the list of identifiers.
+     *
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getIdentifierList()
@@ -54,7 +55,8 @@ class MediaRepository extends EntityRepository
     }
 
     /**
-     * Get default collection
+     * Get default collection.
+     *
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getDefaultCollection()
@@ -71,7 +73,8 @@ class MediaRepository extends EntityRepository
     }
 
     /**
-     * Populate versions
+     * Populate versions.
+     *
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function addVersions(&$collection)
@@ -96,8 +99,10 @@ class MediaRepository extends EntityRepository
     }
 
     /**
-     * Get medias collection available for a specify version
-     * @param  \Madef\CmsBundle\Entity\Version              $version
+     * Get medias collection available for a specify version.
+     *
+     * @param \Madef\CmsBundle\Entity\Version $version
+     *
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function findByVersion($version)
@@ -127,9 +132,11 @@ class MediaRepository extends EntityRepository
     }
 
     /**
-     * Get media using identifier and version
-     * @param  string                          $identifier
-     * @param  \Madef\CmsBundle\Entity\Version $version
+     * Get media using identifier and version.
+     *
+     * @param string                          $identifier
+     * @param \Madef\CmsBundle\Entity\Version $version
+     *
      * @return \Madef\CmsBundle\Entity\Media
      */
     public function findOneByVersion($identifier, $version)
@@ -154,7 +161,8 @@ class MediaRepository extends EntityRepository
     }
 
     /**
-     * Get number of medias
+     * Get number of medias.
+     *
      * @return int
      */
     public function count()
@@ -165,5 +173,4 @@ class MediaRepository extends EntityRepository
             ->getSingleScalarResult()
         ;
     }
-
 }

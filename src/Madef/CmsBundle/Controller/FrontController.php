@@ -36,81 +36,80 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class FrontController extends Controller
 {
     /**
-     *
      * @var \Madef\CmsBundle\Entity\Version
      */
     protected $version;
+    protected $identifier;
+    protected $page;
 
     /**
+     * @param string $hashVersion
+     * @param string $path
      *
-     * @param  string $hashVersion
-     * @param  string $path
      * @return type
+     *
      * @throws type
      */
     public function indexAction($hashVersion, $identifier)
     {
-        $version = $this->getVersion($hashVersion);
-        $page = $this->getPage($identifier, $version);
-        $layout = $this->getLayout($page->getLayoutIdentifier(), $version);
+        $this->identifier = $identifier;
+        $this->setVersion($hashVersion);
 
-        return $this->process($layout->getTemplate(), $page->getContent(), $version);
+        return $this->process();
     }
 
     /**
+     * @param string $hashVersion
      *
-     * @param  string                          $hashVersion
-     * @return \Madef\CmsBundle\Entity\Version
      * @throws type
      */
-    protected function getVersion($hashVersion)
+    protected function setVersion($hashVersion)
     {
         // Get version using hash
         if ($hashVersion === 'current') {
-            $version = $this->getDoctrine()->getRepository('MadefCmsBundle:Version')
+            $this->version = $this->getDoctrine()->getRepository('MadefCmsBundle:Version')
                     ->findOneByCurrent(true);
         } else {
-            $version = $this->getDoctrine()->getRepository('MadefCmsBundle:Version')
+            $this->version = $this->getDoctrine()->getRepository('MadefCmsBundle:Version')
                     ->findOneByHash($hashVersion);
         }
 
-        if (!$version) {
+        if (!$this->version) {
             throw $this->createNotFoundException($this->get('translator')->trans('front.error.entity.page.notfound'));
         }
 
-        return $version;
+        return $this->version;
     }
 
     /**
-     *
-     * @param  string                          $identifier
-     * @param  \Madef\CmsBundle\Entity\Version $version
      * @return type
+     *
      * @throws type
      */
-    protected function getPage($identifier, \Madef\CmsBundle\Entity\Version $version)
+    protected function getPage()
     {
-        $page = $this->getDoctrine()->getRepository('MadefCmsBundle:Page')
-                ->findOneByVersion($identifier, $version);
+        if (empty($this->page)) {
+            $this->page = $this->getDoctrine()->getRepository('MadefCmsBundle:Page')
+                    ->findOneByVersion($this->identifier, $this->version);
 
-        if (!$page) {
-            throw $this->createNotFoundException($this->get('translator')->trans('front.error.entity.page.notfound'));
+            if (!$this->page) {
+                throw $this->createNotFoundException($this->get('translator')->trans('front.error.entity.page.notfound'));
+            }
         }
 
-        return $page;
+        return $this->page;
     }
 
     /**
-     *
-     * @param  string                          $identifier
-     * @param  \Madef\CmsBundle\Entity\Version $version
      * @return \Madef\CmsBundle\Entity\Layout
+     *
      * @throws \Exception
      */
-    protected function getLayout($identifier, \Madef\CmsBundle\Entity\Version $version)
+    protected function getLayout()
     {
+        $identifier = $this->getPage()->getLayoutIdentifier();
         $layout = $this->getDoctrine()->getRepository('MadefCmsBundle:Layout')
-                ->findOneByVersion($identifier, $version);
+                ->findOneByVersion($identifier, $this->version);
 
         if (!$layout) {
             throw new \Exception($this->get('translator')->trans('front.error.entity.page.layout.unknow'));
@@ -120,16 +119,16 @@ class FrontController extends Controller
     }
 
     /**
+     * @param string $identifier
      *
-     * @param  string                          $identifier
-     * @param  \Madef\CmsBundle\Entity\Version $version
-     * @return \Madef\CmsBundle\Entity\Layout
+     * @return \Madef\CmsBundle\Entity\Widget
+     *
      * @throws \Exception
      */
-    protected function getWidget($identifier, \Madef\CmsBundle\Entity\Version $version)
+    protected function getWidget($identifier)
     {
         $widget = $this->getDoctrine()->getRepository('MadefCmsBundle:Widget')
-                ->findOneByVersion($identifier, $version);
+                ->findOneByVersion($identifier, $this->version);
 
         if (!$widget) {
             throw new \Exception($this->get('translator')->trans('front.error.entity.page.widget.unknow'));
@@ -139,14 +138,13 @@ class FrontController extends Controller
     }
 
     /**
+     * @param object $widgetData
      *
-     * @param  object                          $widgetData
-     * @param  \Madef\CmsBundle\Entity\Version $version
      * @return string
      */
-    protected function renderWidget($widgetData, \Madef\CmsBundle\Entity\Version $version)
+    protected function renderWidget($widgetData)
     {
-        $widget = $this->getWidget($widgetData->identifier, $version);
+        $widget = $this->getWidget($widgetData->identifier);
 
         if (isset($widgetData->vars)) {
             $vars = (array) $widgetData->vars;
@@ -155,62 +153,57 @@ class FrontController extends Controller
         }
         $rendererClass = $widget->getFrontRenderer();
         $renderer = new $rendererClass($widget, $vars);
+
         return $renderer->render();
-
-        $widgetTwigEnvironment = new \Twig_Environment(new \Twig_Loader_String());
-        if (isset($widgetData->vars)) {
-            $vars = (array) $widgetData->vars;
-        } else {
-            $vars = array();
-        }
-
-        return $widgetTwigEnvironment->render($widget->getTemplate(), $vars);
     }
 
     /**
+     * @param object $pageContent
      *
-     * @param  object                          $pageContent
-     * @param  string                          $layoutTemplate
-     * @param  \Madef\CmsBundle\Entity\Version $version
      * @return string
      */
-    protected function renderLayout($pageContent, $layoutTemplate, \Madef\CmsBundle\Entity\Version $version)
+    protected function renderLayout($pageContent)
     {
         $layoutVars = array();
+        $layoutVars['_page'] = $this->identifier;
+        $layoutVars['_version'] = $this->version;
         foreach ($pageContent as $layoutBlock => $blockContent) {
             $layoutVars[$layoutBlock] = '';
             foreach ($blockContent as $widgetData) {
-                $layoutVars[$layoutBlock] .= $this->renderWidget($widgetData, $version);
+                $layoutVars[$layoutBlock] .= $this->renderWidget($widgetData);
             }
         }
         $layoutTwigEnvironment = new \Twig_Environment(new \Twig_Loader_String());
+        $layoutTwigEnvironment->addFunction(new \Twig_SimpleFunction('url', function ($url, $params) {
+                return $this->generateUrl($url, $params);
+        }));
 
-        return $layoutTwigEnvironment->render($layoutTemplate, $layoutVars);
+        return $layoutTwigEnvironment->render($this->getLayout()->getTemplate(), $layoutVars);
     }
 
     /**
-     *
-     * @param  string                                     $layoutTemplate
-     * @param  string                                     $blockContent
-     * @param  \Madef\CmsBundle\Entity\Version            $version
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function process($layoutTemplate, $blockContent, \Madef\CmsBundle\Entity\Version $version)
+    public function process()
     {
+        $blockContent = $this->getPage()->getContent();
         $content = json_decode($blockContent);
         if (is_null($content)) {
             throw new \Exception($this->get('translator')->trans('front.error.entity.page.content.format'));
         }
 
-        return new Response($this->renderLayout($content, $layoutTemplate, $version));
+        return new Response($this->renderLayout($content));
     }
 
     /**
-     * Return media content
-     * @param  string $identifier
-     * @param  string $version
+     * Return media content.
+     *
+     * @param string $identifier
+     * @param string $version
      * @ParamConverter("version", class="MadefCmsBundle:Version")
+     *
      * @return type
+     *
      * @throws type
      */
     public function mediaAction($identifier, $version)
@@ -220,7 +213,7 @@ class FrontController extends Controller
         $media = $this->getDoctrine()->getRepository('MadefCmsBundle:Media')
                 ->findOneBy(array('identifier' => $identifier, 'version' => $version));
 
-        $response = new BinaryFileResponse($media->getUploadDir() . $media->getHash());
+        $response = new BinaryFileResponse($media->getUploadDir().$media->getHash());
         $response->headers->set('Content-Type', $media->getMimeType());
 
         return $response;

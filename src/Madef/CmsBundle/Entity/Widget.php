@@ -27,8 +27,8 @@
  */
 
 namespace Madef\CmsBundle\Entity;
-use Doctrine\Common\Collections\ArrayCollection;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -46,6 +46,7 @@ class Widget
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      * @var string
      */
     private $identifier;
@@ -53,54 +54,63 @@ class Widget
     /**
      * @ORM\ManyToOne(targetEntity="Version")
      * @ORM\JoinColumn(name="version_id", referencedColumnName="id")
+     *
      * @var \Madef\CmsBundle\Entity\Version
      */
     private $version;
 
     /**
      * @ORM\Column(type="text")
+     *
      * @var string
      */
     private $form;
 
     /**
      * @ORM\Column(type="text")
+     *
      * @var string
      */
     private $template;
 
     /**
      * @ORM\Column(type="text")
+     *
      * @var string
      */
     private $default_content;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     *
      * @var string
      */
     private $js;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     *
      * @var string
      */
     private $css;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      * @var string
      */
     private $front_renderer;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      * @var string
      */
     private $back_renderer;
 
     /**
      * @ORM\Column(type="boolean")
+     *
      * @var Boolean
      */
     private $removed;
@@ -116,9 +126,9 @@ class Widget
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -126,9 +136,10 @@ class Widget
     }
 
     /**
-     * Set identifier
+     * Set identifier.
      *
-     * @param  string $identifier
+     * @param string $identifier
+     *
      * @return Widget
      */
     public function setIdentifier($identifier)
@@ -139,7 +150,7 @@ class Widget
     }
 
     /**
-     * Get identifier
+     * Get identifier.
      *
      * @return string
      */
@@ -149,9 +160,10 @@ class Widget
     }
 
     /**
-     * Set form
+     * Set form.
      *
-     * @param  string $form
+     * @param string $form
+     *
      * @return Widget
      */
     public function setForm($form)
@@ -162,7 +174,7 @@ class Widget
     }
 
     /**
-     * Get form
+     * Get form.
      *
      * @return string
      */
@@ -172,9 +184,10 @@ class Widget
     }
 
     /**
-     * Set template
+     * Set template.
      *
-     * @param  string $template
+     * @param string $template
+     *
      * @return Widget
      */
     public function setTemplate($template)
@@ -185,7 +198,7 @@ class Widget
     }
 
     /**
-     * Get template
+     * Get template.
      *
      * @return string
      */
@@ -195,9 +208,10 @@ class Widget
     }
 
     /**
-     * Set defaultContent
+     * Set defaultContent.
      *
-     * @param  string $default_content
+     * @param string $default_content
+     *
      * @return Widget
      */
     public function setDefaultContent($default_content)
@@ -208,7 +222,7 @@ class Widget
     }
 
     /**
-     * Get defaultContent
+     * Get defaultContent.
      *
      * @return string
      */
@@ -218,7 +232,7 @@ class Widget
     }
 
     /**
-     * Set js
+     * Set js.
      *
      * @param string $js
      *
@@ -232,7 +246,7 @@ class Widget
     }
 
     /**
-     * Get js
+     * Get js.
      *
      * @return string
      */
@@ -242,7 +256,7 @@ class Widget
     }
 
     /**
-     * Set css
+     * Set css.
      *
      * @param string $css
      *
@@ -256,7 +270,7 @@ class Widget
     }
 
     /**
-     * Get css
+     * Get css.
      *
      * @return string
      */
@@ -266,7 +280,7 @@ class Widget
     }
 
     /**
-     * Set front renderer class
+     * Set front renderer class.
      *
      * @param string $frontRenderer
      *
@@ -280,7 +294,7 @@ class Widget
     }
 
     /**
-     * Get front renderer class
+     * Get front renderer class.
      *
      * @return string
      */
@@ -290,7 +304,7 @@ class Widget
     }
 
     /**
-     * Set back renderer class
+     * Set back renderer class.
      *
      * @param string $backRenderer
      *
@@ -304,7 +318,7 @@ class Widget
     }
 
     /**
-     * Get back renderer class
+     * Get back renderer class.
      *
      * @return string
      */
@@ -314,9 +328,10 @@ class Widget
     }
 
     /**
-     * Set removed
+     * Set removed.
      *
-     * @param  boolean $removed
+     * @param bool $removed
+     *
      * @return Widget
      */
     public function setRemoved($removed)
@@ -327,9 +342,9 @@ class Widget
     }
 
     /**
-     * Get removed
+     * Get removed.
      *
-     * @return boolean
+     * @return bool
      */
     public function getRemoved()
     {
@@ -337,9 +352,10 @@ class Widget
     }
 
     /**
-     * Set version
+     * Set version.
      *
-     * @param  \Madef\CmsBundle\Entity\Version $version
+     * @param \Madef\CmsBundle\Entity\Version $version
+     *
      * @return Widget
      */
     public function setVersion(\Madef\CmsBundle\Entity\Version $version = null)
@@ -350,7 +366,7 @@ class Widget
     }
 
     /**
-     * Get version
+     * Get version.
      *
      * @return \Madef\CmsBundle\Entity\Version
      */
@@ -360,8 +376,10 @@ class Widget
     }
 
     /**
-     * Set Versions (non persistant)
-     * @param  \Doctrine\Common\Collections\ArrayCollection $versions
+     * Set Versions (non persistant).
+     *
+     * @param \Doctrine\Common\Collections\ArrayCollection $versions
+     *
      * @return \Madef\CmsBundle\Entity\Widget
      */
     public function setVersions(ArrayCollection $versions)
@@ -372,7 +390,8 @@ class Widget
     }
 
     /**
-     * Get versions (@see WidgetRepository:addVersions)
+     * Get versions (@see WidgetRepository:addVersions).
+     *
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getVersions()

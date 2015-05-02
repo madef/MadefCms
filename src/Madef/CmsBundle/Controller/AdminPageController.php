@@ -37,7 +37,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class AdminPageController extends Controller
 {
     /**
-     *
      * @return type
      */
     public function listAction()
@@ -54,9 +53,10 @@ class AdminPageController extends Controller
     }
 
     /**
-     * Display form to create a Page
+     * Display form to create a Page.
      *
-     * @param  \Symfony\Component\HttpFoundation\Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
      * @return type
      */
     public function addAction(Request $request)
@@ -73,7 +73,7 @@ class AdminPageController extends Controller
             ->add('identifier', 'text', array(
                 'attr' => array(
                     'placeholder' => 'home',
-            )))
+            ), ))
             ->add('layout_identifier', 'choice', array(
                 'choices'   => $layoutList,
                 'empty_value'  => '',
@@ -83,7 +83,7 @@ class AdminPageController extends Controller
                     'data-ajax-url' => $this->generateUrl('madef_cms_admin_ajax_render_structure'),
                 ),
             ))
-            ->add('content', new \Madef\CmsBundle\Form\Type\StructureType, array(
+            ->add('content', new \Madef\CmsBundle\Form\Type\StructureType(), array(
                 'attr' => array(
                     'data-ajax-render-content-url' => $this->generateUrl('madef_cms_admin_ajax_render_content'),
                     'data-ajax-render-widget-from-url' => $this->generateUrl('madef_cms_admin_ajax_render_widget_form'),
@@ -119,13 +119,14 @@ class AdminPageController extends Controller
     }
 
     /**
-     * Display form to edit a Page
+     * Display form to edit a Page.
      *
      * @ParamConverter("version", class="MadefCmsBundle:Version")
      *
-     * @param  \Symfony\Component\HttpFoundation\Request $request
-     * @param  string                                    $identifier
-     * @param  string                                    $version
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param string                                    $identifier
+     * @param string                                    $version
+     *
      * @return type
      */
     public function editAction(Request $request, $identifier, $version)
@@ -163,7 +164,7 @@ class AdminPageController extends Controller
                     'data-ajax-url' => $this->generateUrl('madef_cms_admin_ajax_render_structure'),
                 ),
             ))
-            ->add('content', new \Madef\CmsBundle\Form\Type\StructureType, array(
+            ->add('content', new \Madef\CmsBundle\Form\Type\StructureType(), array(
                 'attr' => array(
                     'data-ajax-render-content-url' => $this->generateUrl('madef_cms_admin_ajax_render_content'),
                     'data-ajax-render-widget-from-url' => $this->generateUrl('madef_cms_admin_ajax_render_widget_form'),

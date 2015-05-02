@@ -32,7 +32,6 @@ class DefaultBackRenderer extends AbstractBackRenderer
 {
     public function render()
     {
-
         $formatedFields = array();
         $fields = json_decode($this->widget->getForm(), true);
 
@@ -57,4 +56,3 @@ class DefaultBackRenderer extends AbstractBackRenderer
         ));
     }
 }
-

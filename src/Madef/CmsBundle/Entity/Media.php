@@ -48,6 +48,7 @@ class Media
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      * @var string
      */
     private $identifier;
@@ -55,30 +56,35 @@ class Media
     /**
      * @ORM\ManyToOne(targetEntity="Version")
      * @ORM\JoinColumn(name="version_id", referencedColumnName="id")
+     *
      * @var \Madef\CmsBundle\Entity\Version
      */
     private $version;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      * @var string
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      * @var string
      */
     private $mime_type;
 
     /**
      * @Assert\File(maxSize="6000000")
+     *
      * @var string
      */
     private $file;
 
     /**
      * @ORM\Column(type="boolean")
+     *
      * @var Boolean
      */
     private $removed;
@@ -94,9 +100,9 @@ class Media
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -104,9 +110,10 @@ class Media
     }
 
     /**
-     * Set identifier
+     * Set identifier.
      *
-     * @param  string $identifier
+     * @param string $identifier
+     *
      * @return Layout
      */
     public function setIdentifier($identifier)
@@ -117,7 +124,7 @@ class Media
     }
 
     /**
-     * Get identifier
+     * Get identifier.
      *
      * @return string
      */
@@ -127,9 +134,10 @@ class Media
     }
 
     /**
-     * Set removed
+     * Set removed.
      *
-     * @param  boolean $removed
+     * @param bool $removed
+     *
      * @return Layout
      */
     public function setRemoved($removed)
@@ -140,9 +148,9 @@ class Media
     }
 
     /**
-     * Get removed
+     * Get removed.
      *
-     * @return boolean
+     * @return bool
      */
     public function getRemoved()
     {
@@ -150,9 +158,10 @@ class Media
     }
 
     /**
-     * Set version
+     * Set version.
      *
-     * @param  \Madef\CmsBundle\Entity\Version $version
+     * @param \Madef\CmsBundle\Entity\Version $version
+     *
      * @return Layout
      */
     public function setVersion(\Madef\CmsBundle\Entity\Version $version = null)
@@ -163,7 +172,7 @@ class Media
     }
 
     /**
-     * Get version
+     * Get version.
      *
      * @return \Madef\CmsBundle\Entity\Version
      */
@@ -173,8 +182,10 @@ class Media
     }
 
     /**
-     * Set Versions (non persistant)
-     * @param  \Doctrine\Common\Collections\ArrayCollection $versions
+     * Set Versions (non persistant).
+     *
+     * @param \Doctrine\Common\Collections\ArrayCollection $versions
+     *
      * @return \Madef\CmsBundle\Entity\Media
      */
     public function setVersions(ArrayCollection $versions)
@@ -185,7 +196,8 @@ class Media
     }
 
     /**
-     * Get versions (@see MediaRepository:addVersions)
+     * Get versions (@see MediaRepository:addVersions).
+     *
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getVersions()
@@ -194,7 +206,7 @@ class Media
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -208,7 +220,7 @@ class Media
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -218,7 +230,7 @@ class Media
     }
 
     /**
-     * Set mimeType
+     * Set mimeType.
      *
      * @param string $mimeType
      *
@@ -232,7 +244,7 @@ class Media
     }
 
     /**
-     * Get mimeType
+     * Get mimeType.
      *
      * @return string
      */
@@ -242,7 +254,7 @@ class Media
     }
 
     /**
-     * Set file
+     * Set file.
      *
      * @param string $file
      *
@@ -256,7 +268,7 @@ class Media
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -266,18 +278,18 @@ class Media
     }
 
     /**
-     * Get hash
+     * Get hash.
      *
      * @return string
      */
     public function getHash()
     {
-        return md5($this->getIdentifier() . '-' . $this->getVersion()->getId());
+        return md5($this->getIdentifier().'-'.$this->getVersion()->getId());
     }
 
     public function getUploadDir()
     {
-        return __DIR__ . '/../../../../app/data/media/';
+        return __DIR__.'/../../../../app/data/media/';
     }
 
     /**
@@ -311,7 +323,7 @@ class Media
      */
     public function removeUpload()
     {
-        if ($file = $this->getUploadDir() . $this->getHash()) {
+        if ($file = $this->getUploadDir().$this->getHash()) {
             unlink($file);
         }
     }
@@ -319,6 +331,7 @@ class Media
     public function isImage()
     {
         list($type, $ext) = explode('/', $this->getMimeType());
+
         return $type === 'image';
     }
 }

@@ -35,4 +35,3 @@ class DefaultFrontRenderer extends AbstractFrontRenderer
         return $this->vars;
     }
 }
-

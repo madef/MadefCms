@@ -34,7 +34,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 class WidgetRepository extends EntityRepository
 {
     /**
-     * Get default collection
+     * Get default collection.
+     *
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getDefaultCollection()
@@ -51,7 +52,8 @@ class WidgetRepository extends EntityRepository
     }
 
     /**
-     * Populate versions
+     * Populate versions.
+     *
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function addVersions(&$collection)
@@ -76,8 +78,10 @@ class WidgetRepository extends EntityRepository
     }
 
     /**
-     * Get widgets collection available for a specify version
-     * @param  \Madef\CmsBundle\Entity\Version              $version
+     * Get widgets collection available for a specify version.
+     *
+     * @param \Madef\CmsBundle\Entity\Version $version
+     *
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function findByVersion($version)
@@ -107,9 +111,11 @@ class WidgetRepository extends EntityRepository
     }
 
     /**
-     * Get widget using identifier and version
-     * @param  string                          $identifier
-     * @param  \Madef\CmsBundle\Entity\Version $version
+     * Get widget using identifier and version.
+     *
+     * @param string                          $identifier
+     * @param \Madef\CmsBundle\Entity\Version $version
+     *
      * @return \Madef\CmsBundle\Entity\Widget
      */
     public function findOneByVersion($identifier, $version)
@@ -134,7 +140,8 @@ class WidgetRepository extends EntityRepository
     }
 
     /**
-     * Get number of widget
+     * Get number of widget.
+     *
      * @return int
      */
     public function count()
@@ -145,5 +152,4 @@ class WidgetRepository extends EntityRepository
             ->getSingleScalarResult()
         ;
     }
-
 }

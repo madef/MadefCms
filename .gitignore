@@ -12,3 +12,6 @@
 /bin/
 /composer.phar
 *.*~
+init.sh
+composer.lock
+.gitignore

@@ -34,9 +34,9 @@ abstract class AbstractFrontRenderer
     protected $vars;
 
     /**
+     * @param \Madef\CmsBundle\Entity\Widget $widget
+     * @param array                          $vars
      *
-     * @param  \Madef\CmsBundle\Entity\Widget $widget
-     * @param  array                          $vars
      * @return string
      */
     public function __construct(\Madef\CmsBundle\Entity\Widget $widget, $vars)
@@ -46,13 +46,12 @@ abstract class AbstractFrontRenderer
     }
 
     /**
-     *
      * @return string
      */
     public function render()
     {
         $widgetTwigEnvironment = new \Twig_Environment(new \Twig_Loader_String());
-        $widgetTwigEnvironment->addFunction(new \Twig_SimpleFunction('url', function($url) {
+        $widgetTwigEnvironment->addFunction(new \Twig_SimpleFunction('url', function ($url) {
                 return $this->generateUrl($url);
         }));
 
@@ -61,4 +60,3 @@ abstract class AbstractFrontRenderer
 
     abstract protected function getData();
 }
-

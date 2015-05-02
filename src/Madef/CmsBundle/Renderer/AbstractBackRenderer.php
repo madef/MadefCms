@@ -35,10 +35,10 @@ abstract class AbstractBackRenderer
     protected $vars;
 
     /**
+     * @param \Symfony\Bundle\FrameworkBundle\Controller\Controller $controller
+     * @param \Madef\CmsBundle\Entity\Widget                        $widget
+     * @param array                                                 $vars
      *
-     * @param  \Symfony\Bundle\FrameworkBundle\Controller\Controller $controller
-     * @param  \Madef\CmsBundle\Entity\Widget                        $widget
-     * @param  array                                                 $vars
      * @return string
      */
     public function __construct(\Symfony\Bundle\FrameworkBundle\Controller\Controller $controller, \Madef\CmsBundle\Entity\Widget $widget, $vars)
@@ -49,9 +49,7 @@ abstract class AbstractBackRenderer
     }
 
     /**
-     *
      * @return string
      */
     abstract public function render();
 }
-

@@ -34,7 +34,8 @@ use Doctrine\ORM\EntityRepository;
 class PageRepository extends EntityRepository
 {
     /**
-     * Get default collection
+     * Get default collection.
+     *
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getDefaultCollection()
@@ -51,7 +52,8 @@ class PageRepository extends EntityRepository
     }
 
     /**
-     * Populate versions
+     * Populate versions.
+     *
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function addVersions(&$collection)
@@ -76,9 +78,11 @@ class PageRepository extends EntityRepository
     }
 
     /**
-     * Get page using identifier and version
-     * @param  string                          $identifier
-     * @param  \Madef\CmsBundle\Entity\Version $version
+     * Get page using identifier and version.
+     *
+     * @param string                          $identifier
+     * @param \Madef\CmsBundle\Entity\Version $version
+     *
      * @return \Madef\CmsBundle\Entity\Page
      */
     public function findOneByVersion($identifier, $version)
@@ -103,7 +107,8 @@ class PageRepository extends EntityRepository
     }
 
     /**
-     * Get number of page
+     * Get number of page.
+     *
      * @return int
      */
     public function count()
@@ -114,5 +119,4 @@ class PageRepository extends EntityRepository
             ->getSingleScalarResult()
         ;
     }
-
 }

@@ -37,7 +37,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class AdminMediaController extends Controller
 {
     /**
-     *
      * @return type
      */
     public function listAction()
@@ -54,9 +53,10 @@ class AdminMediaController extends Controller
     }
 
     /**
-     * Display form to create a Media
+     * Display form to create a Media.
      *
-     * @param  \Symfony\Component\HttpFoundation\Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
      * @return type
      */
     public function addAction(Request $request)
@@ -70,7 +70,7 @@ class AdminMediaController extends Controller
             ->add('identifier', 'text', array(
                 'attr' => array(
                     'placeholder' => 'media-identifier',
-            )))
+            ), ))
             ->add('name', 'text')
             ->add('file')
             ->add('version', 'entity', array(
@@ -100,13 +100,14 @@ class AdminMediaController extends Controller
     }
 
     /**
-     * Display form to edit a Media
+     * Display form to edit a Media.
      *
      * @ParamConverter("version", class="MadefCmsBundle:Version")
      *
-     * @param  \Symfony\Component\HttpFoundation\Request $request
-     * @param  string                                    $identifier
-     * @param  string                                    $version
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param string                                    $identifier
+     * @param string                                    $version
+     *
      * @return type
      */
     public function editAction(Request $request, $identifier, $version)

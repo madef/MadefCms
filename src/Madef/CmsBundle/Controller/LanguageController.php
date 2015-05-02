@@ -34,8 +34,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class LanguageController extends Controller
 {
     /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @param  \Symfony\Component\HttpFoundation\Request  $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function adminRouteAction(Request $request)
@@ -49,8 +49,8 @@ class LanguageController extends Controller
     }
 
     /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @param  \Symfony\Component\HttpFoundation\Request  $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function frontRouteAction(Request $request)

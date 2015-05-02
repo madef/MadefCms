@@ -30,13 +30,11 @@ namespace Madef\CmsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Doctrine\ORM\EntityRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class AdminUserController extends Controller
 {
     /**
-     *
      * @return type
      */
     public function listAction()
@@ -49,9 +47,10 @@ class AdminUserController extends Controller
     }
 
     /**
-     * Display form to create a User
+     * Display form to create a User.
      *
-     * @param  \Symfony\Component\HttpFoundation\Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
      * @return type
      */
     public function addAction(Request $request)
@@ -104,14 +103,14 @@ class AdminUserController extends Controller
         ));
     }
 
-
     /**
-     * Display form to edit a User
+     * Display form to edit a User.
      *
      * @ParamConverter("user", class="MadefCmsBundle:User")
      *
-     * @param  \Symfony\Component\HttpFoundation\Request $request
-     * @param  \FOS\UserBundle\Model\User                $user
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \FOS\UserBundle\Model\User                $user
+     *
      * @return type
      */
     public function editAction(Request $request, \FOS\UserBundle\Model\User $user)
@@ -162,4 +161,3 @@ class AdminUserController extends Controller
         ));
     }
 }
-

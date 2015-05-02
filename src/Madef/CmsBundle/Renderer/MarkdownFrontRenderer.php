@@ -39,4 +39,3 @@ class MarkdownFrontRenderer extends AbstractFrontRenderer
         return $this->vars;
     }
 }
-

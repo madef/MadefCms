@@ -46,6 +46,7 @@ class Layout
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      * @var string
      */
     private $identifier;
@@ -53,30 +54,35 @@ class Layout
     /**
      * @ORM\ManyToOne(targetEntity="Version")
      * @ORM\JoinColumn(name="version_id", referencedColumnName="id")
+     *
      * @var \Madef\CmsBundle\Entity\Version
      */
     private $version;
 
     /**
      * @ORM\Column(type="text")
+     *
      * @var string
      */
     private $structure;
 
     /**
      * @ORM\Column(type="text")
+     *
      * @var string
      */
     private $template;
 
     /**
      * @ORM\Column(type="text")
+     *
      * @var string
      */
     private $default_content;
 
     /**
      * @ORM\Column(type="boolean")
+     *
      * @var Boolean
      */
     private $removed;
@@ -92,9 +98,9 @@ class Layout
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -102,9 +108,10 @@ class Layout
     }
 
     /**
-     * Set identifier
+     * Set identifier.
      *
-     * @param  string $identifier
+     * @param string $identifier
+     *
      * @return Layout
      */
     public function setIdentifier($identifier)
@@ -115,7 +122,7 @@ class Layout
     }
 
     /**
-     * Get identifier
+     * Get identifier.
      *
      * @return string
      */
@@ -125,9 +132,10 @@ class Layout
     }
 
     /**
-     * Set structure
+     * Set structure.
      *
-     * @param  string $structure
+     * @param string $structure
+     *
      * @return Layout
      */
     public function setStructure($structure)
@@ -138,7 +146,7 @@ class Layout
     }
 
     /**
-     * Get structure
+     * Get structure.
      *
      * @return string
      */
@@ -148,9 +156,10 @@ class Layout
     }
 
     /**
-     * Set template
+     * Set template.
      *
-     * @param  string $template
+     * @param string $template
+     *
      * @return Layout
      */
     public function setTemplate($template)
@@ -161,7 +170,7 @@ class Layout
     }
 
     /**
-     * Get template
+     * Get template.
      *
      * @return string
      */
@@ -171,9 +180,10 @@ class Layout
     }
 
     /**
-     * Set defaultContent
+     * Set defaultContent.
      *
-     * @param  string $default_content
+     * @param string $default_content
+     *
      * @return Layout
      */
     public function setDefaultContent($default_content)
@@ -184,7 +194,7 @@ class Layout
     }
 
     /**
-     * Get defaultContent
+     * Get defaultContent.
      *
      * @return string
      */
@@ -194,9 +204,10 @@ class Layout
     }
 
     /**
-     * Set removed
+     * Set removed.
      *
-     * @param  boolean $removed
+     * @param bool $removed
+     *
      * @return Layout
      */
     public function setRemoved($removed)
@@ -207,9 +218,9 @@ class Layout
     }
 
     /**
-     * Get removed
+     * Get removed.
      *
-     * @return boolean
+     * @return bool
      */
     public function getRemoved()
     {
@@ -217,9 +228,10 @@ class Layout
     }
 
     /**
-     * Set version
+     * Set version.
      *
-     * @param  \Madef\CmsBundle\Entity\Version $version
+     * @param \Madef\CmsBundle\Entity\Version $version
+     *
      * @return Layout
      */
     public function setVersion(\Madef\CmsBundle\Entity\Version $version = null)
@@ -230,7 +242,7 @@ class Layout
     }
 
     /**
-     * Get version
+     * Get version.
      *
      * @return \Madef\CmsBundle\Entity\Version
      */
@@ -240,8 +252,10 @@ class Layout
     }
 
     /**
-     * Set Versions (non persistant)
-     * @param  \Doctrine\Common\Collections\ArrayCollection $versions
+     * Set Versions (non persistant).
+     *
+     * @param \Doctrine\Common\Collections\ArrayCollection $versions
+     *
      * @return \Madef\CmsBundle\Entity\Page
      */
     public function setVersions(ArrayCollection $versions)
@@ -252,7 +266,8 @@ class Layout
     }
 
     /**
-     * Get versions (@see PageRepository:addVersions)
+     * Get versions (@see PageRepository:addVersions).
+     *
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getVersions()

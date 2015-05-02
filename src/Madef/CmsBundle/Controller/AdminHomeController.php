@@ -33,7 +33,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class AdminHomeController extends Controller
 {
     /**
-     *
      * @return type
      */
     public function indexAction()
@@ -64,19 +63,19 @@ class AdminHomeController extends Controller
             $securityContext = $this->container->get('security.context');
             if ($securityContext->isGranted('ROLE_PAGE_VIEW')) {
                 return $this->redirect($this->generateUrl('madef_cms_admin_page_list'));
-            } else if ($securityContext->isGranted('ROLE_LAYOUT')) {
+            } elseif ($securityContext->isGranted('ROLE_LAYOUT')) {
                 return $this->redirect($this->generateUrl('madef_cms_admin_layout_list'));
-            } else if ($securityContext->isGranted('ROLE_WIDGET')) {
+            } elseif ($securityContext->isGranted('ROLE_WIDGET')) {
                 return $this->redirect($this->generateUrl('madef_cms_admin_widget_list'));
-            } else if ($securityContext->isGranted('ROLE_MEDIA')) {
+            } elseif ($securityContext->isGranted('ROLE_MEDIA')) {
                 return $this->redirect($this->generateUrl('madef_cms_admin_media_list'));
-            } else if ($securityContext->isGranted('ROLE_VERSION_VIEW')) {
+            } elseif ($securityContext->isGranted('ROLE_VERSION_VIEW')) {
                 return $this->redirect($this->generateUrl('madef_cms_admin_version_list'));
             } else {
                 throw $this->createNotFoundException('Not enought right');
             }
         }
 
-        return $this->render('MadefCmsBundle:AdminHome:step-' . $step . '.html.twig');
+        return $this->render('MadefCmsBundle:AdminHome:step-'.$step.'.html.twig');
     }
 }

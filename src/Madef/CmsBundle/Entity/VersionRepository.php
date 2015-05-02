@@ -32,9 +32,9 @@ use Doctrine\ORM\EntityRepository;
 
 class VersionRepository extends EntityRepository
 {
-
     /**
-     * Get the list of version not published
+     * Get the list of version not published.
+     *
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getNotPublishedQuery()
@@ -49,7 +49,8 @@ class VersionRepository extends EntityRepository
     }
 
     /**
-     * Get the list of version published
+     * Get the list of version published.
+     *
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getPublishedQuery()
@@ -64,7 +65,8 @@ class VersionRepository extends EntityRepository
     }
 
     /**
-     * Get default collection
+     * Get default collection.
+     *
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getDefaultCollection()
@@ -79,7 +81,8 @@ class VersionRepository extends EntityRepository
     }
 
     /**
-     * Get the current version
+     * Get the current version.
+     *
      * @return \Madef\CmsBundle\Entity\Version
      */
     public function getCurrentVersion()
@@ -95,7 +98,8 @@ class VersionRepository extends EntityRepository
     }
 
     /**
-     * Get number of version published
+     * Get number of version published.
+     *
      * @return int
      */
     public function countPublished()
@@ -110,7 +114,8 @@ class VersionRepository extends EntityRepository
     }
 
     /**
-     * Get number of version
+     * Get number of version.
+     *
      * @return int
      */
     public function count()

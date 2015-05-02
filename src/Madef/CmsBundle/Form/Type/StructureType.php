@@ -39,7 +39,7 @@ class StructureType extends AbstractType
             'choices' => array(
                 'm' => 'Male',
                 'f' => 'Female',
-            )
+            ),
         ));
     }
 

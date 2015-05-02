@@ -36,28 +36,28 @@ class StructureValidator extends ConstraintValidator
     public function validate($value, Constraint $constraint)
     {
         $array = json_decode($value);
-        if ($array === NULL) {
+        if ($array === null) {
             $this->context->addViolation($constraint->message);
 
             return;
         }
 
-        if (!is_array ($array)) {
+        if (!is_array($array)) {
             $this->context->addViolation($constraint->message);
 
             return;
         }
 
-                var_export($array);
+        var_export($array);
         foreach ($array as $subarray) {
-            if (!is_array ($subarray)) {
+            if (!is_array($subarray)) {
                 $this->context->addViolation($constraint->message);
 
                 return;
             }
 
             foreach ($subarray as $blockContainer) {
-                if (!is_array ($blockContainer)) {
+                if (!is_array($blockContainer)) {
                     $this->context->addViolation($constraint->message);
 
                     return;

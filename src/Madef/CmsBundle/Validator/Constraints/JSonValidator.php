@@ -35,7 +35,7 @@ class JSonValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint)
     {
-        if (json_decode($value) === NULL) {
+        if (json_decode($value) === null) {
             $this->context->addViolation($constraint->message);
         }
     }

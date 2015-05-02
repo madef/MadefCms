@@ -36,7 +36,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class AdminVersionController extends Controller
 {
     /**
-     *
      * @return type
      */
     public function listAction()
@@ -50,9 +49,10 @@ class AdminVersionController extends Controller
     }
 
     /**
-     * Display form to create a Version
+     * Display form to create a Version.
      *
-     * @param  \Symfony\Component\HttpFoundation\Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
      * @return type
      */
     public function addAction(Request $request)
@@ -66,14 +66,14 @@ class AdminVersionController extends Controller
             ->add('identifier', 'text', array(
                 'attr' => array(
                     'placeholder' => '1 - initial version',
-            )))
+            ), ))
             ->add('save', 'submit')
             ->getForm();
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $version->setHash(md5($version->getIdentifier() . rand(1, getrandmax())));
+            $version->setHash(md5($version->getIdentifier().rand(1, getrandmax())));
             $version->setCreatedAt(new \DateTime());
             $em->persist($version);
             $em->flush();
@@ -87,12 +87,13 @@ class AdminVersionController extends Controller
         ));
     }
     /**
-     * Publish a Version
+     * Publish a Version.
      *
      * @ParamConverter("version", class="MadefCmsBundle:Version")
      *
-     * @param  \Symfony\Component\HttpFoundation\Request $request
-     * @param  \Madef\CmsBundle\Entity\Version           $version
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Madef\CmsBundle\Entity\Version           $version
+     *
      * @return type
      */
     public function publishAction(Request $request, \Madef\CmsBundle\Entity\Version $version)
