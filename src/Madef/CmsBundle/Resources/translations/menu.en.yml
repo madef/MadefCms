@@ -1,0 +1,27 @@
+main_menu:
+    cms: CMS
+    page:
+        list: Page
+        add: Add a page
+    layout:
+        list: Layout
+        add: Add a layout
+    widget:
+        list: Widget
+        add: Add a widget
+    media:
+        list: Media
+        add: Add a media
+    version:
+        list: Version
+        add: Add a version
+        parameters: Parameters
+        users: Users
+        media: Media
+        version: Version
+        widget: Widget
+right_menu:
+    parameters: Parameters
+    myaccount: My account
+    users: Users
+    logout: Logout

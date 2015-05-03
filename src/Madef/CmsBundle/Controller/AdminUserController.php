@@ -28,11 +28,10 @@
 
 namespace Madef\CmsBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
-class AdminUserController extends Controller
+class AdminUserController extends AbstractAdminController
 {
     /**
      * @return type

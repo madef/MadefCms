@@ -167,6 +167,9 @@ $(function() {
                 var element = $(this);
 
                 modal.on('shown.bs.modal', function() {
+                    $(this).find('textarea').each(function() {
+                        new Autoresize(this);
+                    });
                     $('.js-modal-form').submit(function() {
                         var values = {};
                         $.each($(this).serializeArray(), function(key, data) {
@@ -189,7 +192,7 @@ Autoresize = function(textarea)
 
     this.textarea = textarea;
 
-    this.textarea.onkeydown = function() {
+    this.textarea.onkeyup = function() {
         self.resize();
     }
 
@@ -200,14 +203,10 @@ Autoresize = function(textarea)
 
 Autoresize.prototype.resize = function()
 {
-    this.textarea.style.height = this.textarea.scrollHeight;
-    console.log(this.textarea);
+    var size = this.textarea.scrollHeight;
     do {
-        this.textarea.style.height = this.textarea.scrollHeight + 1;
-        var lastSize = this.textarea.scrollHeight;
-    } while (this.textarea.scrollHeight == lastSize)
-    console.log(this.textarea);
-    //while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css("borderTopWidth")) + parseFloat($(this).css("borderBottomWidth"))) {
-        //$(this).height($(this).height()+1);
-    //};
+        var lastScrollHeight = this.textarea.scrollHeight;
+        size++;
+        this.textarea.style.height = size + 'px';
+    } while (this.textarea.scrollHeight == lastScrollHeight)
 }

@@ -28,12 +28,11 @@
 
 namespace Madef\CmsBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Madef\CmsBundle\Entity\Version;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
-class AdminVersionController extends Controller
+class AdminVersionController extends AbstractAdminController
 {
     /**
      * @return type

@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Madef\CmsBundle\MadefCmsBundle(),
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new Madef\UserBundle\MadefUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

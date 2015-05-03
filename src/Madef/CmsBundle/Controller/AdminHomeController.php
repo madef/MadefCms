@@ -28,9 +28,7 @@
 
 namespace Madef\CmsBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
-class AdminHomeController extends Controller
+class AdminHomeController extends AbstractAdminController
 {
     /**
      * @return type

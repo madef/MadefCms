@@ -28,13 +28,12 @@
 
 namespace Madef\CmsBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Madef\CmsBundle\Entity\Widget;
 use Doctrine\ORM\EntityRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
-class AdminWidgetController extends Controller
+class AdminWidgetController extends AbstractAdminController
 {
     /**
      * @return type

@@ -28,13 +28,12 @@
 
 namespace Madef\CmsBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Madef\CmsBundle\Entity\Media;
 use Doctrine\ORM\EntityRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
-class AdminMediaController extends Controller
+class AdminMediaController extends AbstractAdminController
 {
     /**
      * @return type

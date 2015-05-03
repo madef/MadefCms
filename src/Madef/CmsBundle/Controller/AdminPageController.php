@@ -28,13 +28,12 @@
 
 namespace Madef\CmsBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Madef\CmsBundle\Entity\Page;
 use Doctrine\ORM\EntityRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
-class AdminPageController extends Controller
+class AdminPageController extends AbstractAdminController
 {
     /**
      * @return type
