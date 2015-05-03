@@ -41,4 +41,5 @@ security:
         - { path: ^/admin/.*/widget, role: ROLE_WIDGET }
         - { path: ^/admin/.*/version$, role: ROLE_VERSION_VIEW }
         - { path: ^/admin/.*/version, role: ROLE_VERSION_EDIT }
-        - { path: ^/admin/.*/user, role: ROLE_SUPER_ADMIN}
+        - { path: ^/admin/.*/user, role: ROLE_SUPER_ADMIN }
+        - { path: ^/admin, role: ROLE_ADMIN }
