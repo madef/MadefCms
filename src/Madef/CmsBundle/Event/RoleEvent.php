@@ -26,21 +26,21 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Madef\CmsBundle\Entity;
+namespace Madef\CmsBundle\Event;
 
-use FOS\UserBundle\Model\User as BaseUser;
-use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\EventDispatcher\Event;
 
-/**
- * @ORM\Entity()
- * @ORM\Table(name="users")
- */
-class User extends BaseUser
+class RoleEvent extends Event
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
+    protected $roles = array();
+
+    public function addRole($role, $description)
+    {
+        $this->roles[$role] = $description;
+    }
+
+    public function getRoles()
+    {
+        return $this->roles;
+    }
 }

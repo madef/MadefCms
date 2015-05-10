@@ -127,15 +127,6 @@ admin:
                 title: Edit a user
         field:
             password: Password
-            role:
-                pageview: View pages
-                pageedit: Can edit pages
-                versionview: View versions
-                versionedit: Publish versions
-                widget: View and edit widgets
-                layout: View and edit layouts
-                media: View and edit media
-                super: Is a super admin
     widget:
         page:
             add:

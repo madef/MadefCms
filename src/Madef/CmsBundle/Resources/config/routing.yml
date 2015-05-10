@@ -72,18 +72,6 @@ madef_cms_admin_version_publish:
     pattern:  /admin/{_locale}/version/publish/{version}
     defaults: { _controller: MadefCmsBundle:AdminVersion:publish }
 
-madef_cms_admin_user_list:
-    pattern:  /admin/{_locale}/user
-    defaults: { _controller: MadefCmsBundle:AdminUser:list }
-
-madef_cms_admin_user_add:
-    pattern:  /admin/{_locale}/user/add
-    defaults: { _controller: MadefCmsBundle:AdminUser:add }
-
-madef_cms_admin_user_edit:
-    pattern:  /admin/{_locale}/user/edit/{user}
-    defaults: { _controller: MadefCmsBundle:AdminUser:edit }
-
 madef_cms_admin_ajax_widgets_and_layouts:
     pattern:  /admin/{_locale}/ajax/widgets-and-layouts
     defaults: { _controller: MadefCmsBundle:AdminAjax:widgetsAndLayouts }
@@ -104,16 +92,18 @@ madef_cms_admin_ajax_render_structure:
 # Front office
 
 madef_cms_front_display_css:
-     pattern:  /css/{page}/{version}
-     defaults: { _controller: MadefCmsBundle:FrontCss:get }
+    pattern:  /css/{page}/{version}
+    defaults: { _controller: MadefCmsBundle:FrontCss:get }
 
 madef_cms_front_display_js:
-     pattern:  /js/{page}/{version}
-     defaults: { _controller: MadefCmsBundle:FrontJs:get }
+    pattern:  /js/{page}/{version}
+    defaults: { _controller: MadefCmsBundle:FrontJs:get }
 
 madef_cms_front_display_media:
-     pattern:  /{_locale}/media/{identifier}/{version}
-     defaults: { _controller: MadefCmsBundle:Front:media }
+    pattern:  /{_locale}/media/{identifier}/{version}
+    defaults: { _controller: MadefCmsBundle:Front:media }
+    requirements:
+        _locale: \w{2}
 
 madef_cms_front_language_router:
     pattern:  /
@@ -122,7 +112,12 @@ madef_cms_front_language_router:
 madef_cms_front_display_versioned_page:
     pattern:  /{_locale}/{hashVersion}/{identifier}
     defaults: { _controller: MadefCmsBundle:Front:index }
+    requirements:
+        _locale: \w{2}
+        hashVersion: \w{32}
 
 madef_cms_front_display_page:
     pattern:  /{_locale}/{identifier}
     defaults: { _controller: MadefCmsBundle:Front:index, hashVersion: current, identifier: 'home' }
+    requirements:
+        _locale: \w{2}

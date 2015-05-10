@@ -1,3 +1,11 @@
-madef_user_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: MadefUserBundle:Default:index }
+madef_user_admin_user_list:
+    pattern:  /admin/{_locale}/user
+    defaults: { _controller: MadefUserBundle:AdminUser:list }
+
+madef_user_admin_user_add:
+    pattern:  /admin/{_locale}/user/add
+    defaults: { _controller: MadefUserBundle:AdminUser:add }
+
+madef_user_admin_user_edit:
+    pattern:  /admin/{_locale}/user/edit/{user}
+    defaults: { _controller: MadefUserBundle:AdminUser:edit }

@@ -2,8 +2,11 @@ parameters:
 #    madef_cms.example.class: Madef\CmsBundle\Example
 
 services:
-    cms.listener.menu:
+    madef_cms.listener.menu:
         class: Madef\CmsBundle\Listener\MenuListener
         tags:
-            - { name : kernel.event_listener, event: menu.left, method: addToMenuLeft }
-            - { name : kernel.event_listener, event: menu.right, method: addToMenuRight }
+            - { name: kernel.event_listener, event: menu.left, method: addToMenuLeft }
+    madef_cms.listener.role:
+        class: Madef\CmsBundle\Listener\RoleListener
+        tags:
+            - { name: kernel.event_listener, event: roles, method: addRoles }

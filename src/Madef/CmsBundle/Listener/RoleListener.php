@@ -30,20 +30,17 @@ namespace Madef\CmsBundle\Listener;
 
 use Symfony\Component\EventDispatcher\Event;
 
-class MenuListener
+class RoleListener
 {
-    public function addToMenuLeft(Event $event)
+    public function addRoles(Event $event)
     {
-        $event->addEntry('cms', 'main_menu.cms');
-        $event->addEntry('cms/page_list', 'main_menu.page.list', 'madef_cms_admin_page_list', 'ROLE_PAGE_VIEW');
-        $event->addEntry('cms/page_add', 'main_menu.page.add', 'madef_cms_admin_page_add', 'ROLE_PAGE_EDIT');
-        $event->addEntry('cms/layout_list', 'main_menu.layout.list', 'madef_cms_admin_layout_list', 'ROLE_LAYOUT');
-        $event->addEntry('cms/layout_add', 'main_menu.layout.add', 'madef_cms_admin_layout_add', 'ROLE_LAYOUT');
-        $event->addEntry('cms/widget_list', 'main_menu.widget.list', 'madef_cms_admin_widget_list', 'ROLE_WIDGET');
-        $event->addEntry('cms/widget_add', 'main_menu.widget.add', 'madef_cms_admin_widget_add', 'ROLE_WIDGET');
-        $event->addEntry('cms/media_list', 'main_menu.media.list', 'madef_cms_admin_media_list', 'ROLE_MEDIA');
-        $event->addEntry('cms/media_add', 'main_menu.media.add', 'madef_cms_admin_media_add', 'ROLE_MEDIA');
-        $event->addEntry('cms/version_list', 'main_menu.version.list', 'madef_cms_admin_version_list', 'ROLE_VERSION_VIEW');
-        $event->addEntry('cms/version_add', 'main_menu.version.add', 'madef_cms_admin_version_add', 'ROLE_VERSION_EDIT');
+        $event->addRole('ROLE_PAGE_VIEW', 'role.page.view');
+        $event->addRole('ROLE_PAGE_EDIT', 'role.page.edit');
+        $event->addRole('ROLE_LAYOUT', 'role.layout');
+        $event->addRole('ROLE_WIDGET', 'role.widget');
+        $event->addRole('ROLE_MEDIA', 'role.media');
+        $event->addRole('ROLE_VERSION_VIEW', 'role.version.view');
+        $event->addRole('ROLE_VERSION_EDIT', 'role.version.edit');
+        $event->addRole('ROLE_SUPER_ADMIN', 'role.super_admin');
     }
 }

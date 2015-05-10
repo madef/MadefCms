@@ -1,0 +1,11 @@
+role:
+    page:
+        view: View pages
+        edit: Can edit pages
+    widget: View and edit widgets
+    layout: View and edit layouts
+    media: View and edit media
+    version:
+        view: View versions
+        edit: Publish versions
+    super_admin: Is a super admin

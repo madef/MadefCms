@@ -26,24 +26,17 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Madef\CmsBundle\Listener;
+namespace Madef\UserBundle\Listener;
 
 use Symfony\Component\EventDispatcher\Event;
 
 class MenuListener
 {
-    public function addToMenuLeft(Event $event)
+    public function addToMenuRight(Event $event)
     {
-        $event->addEntry('cms', 'main_menu.cms');
-        $event->addEntry('cms/page_list', 'main_menu.page.list', 'madef_cms_admin_page_list', 'ROLE_PAGE_VIEW');
-        $event->addEntry('cms/page_add', 'main_menu.page.add', 'madef_cms_admin_page_add', 'ROLE_PAGE_EDIT');
-        $event->addEntry('cms/layout_list', 'main_menu.layout.list', 'madef_cms_admin_layout_list', 'ROLE_LAYOUT');
-        $event->addEntry('cms/layout_add', 'main_menu.layout.add', 'madef_cms_admin_layout_add', 'ROLE_LAYOUT');
-        $event->addEntry('cms/widget_list', 'main_menu.widget.list', 'madef_cms_admin_widget_list', 'ROLE_WIDGET');
-        $event->addEntry('cms/widget_add', 'main_menu.widget.add', 'madef_cms_admin_widget_add', 'ROLE_WIDGET');
-        $event->addEntry('cms/media_list', 'main_menu.media.list', 'madef_cms_admin_media_list', 'ROLE_MEDIA');
-        $event->addEntry('cms/media_add', 'main_menu.media.add', 'madef_cms_admin_media_add', 'ROLE_MEDIA');
-        $event->addEntry('cms/version_list', 'main_menu.version.list', 'madef_cms_admin_version_list', 'ROLE_VERSION_VIEW');
-        $event->addEntry('cms/version_add', 'main_menu.version.add', 'madef_cms_admin_version_add', 'ROLE_VERSION_EDIT');
+        $event->addEntry('parameters', 'right_menu.parameters');
+        $event->addEntry('parameters/myaccount', 'right_menu.myaccount', 'fos_user_profile_edit');
+        $event->addEntry('parameters/users', 'right_menu.users', 'madef_user_admin_user_list', 'ROLE_SUPER_ADMIN');
+        $event->addEntry('logout', 'right_menu.logout', 'fos_user_security_logout');
     }
 }

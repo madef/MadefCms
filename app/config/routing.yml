@@ -5,3 +5,7 @@ fos_user:
 madef_cms:
     resource: "@MadefCmsBundle/Resources/config/routing.yml"
     prefix:   /
+
+madef_user:
+    resource: "@MadefUserBundle/Resources/config/routing.yml"
+    prefix:   /
