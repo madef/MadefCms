@@ -82,8 +82,12 @@ class AdminWidgetController extends AbstractAdminController
                 'attr' => array(
                     'placeholder' => '{"title": "Hello", "content": "Hello world!"}',
             ), ))
-            ->add('css', 'textarea')
-            ->add('js', 'textarea')
+            ->add('css', 'textarea', array(
+                'required' => false,
+            ))
+            ->add('js', 'textarea', array(
+                'required' => false,
+            ))
             ->add('front_renderer', 'text', array(
                 'attr' => array(
                     'placeholder' => '\Madef\CmsBundle\Renderer\DefaultFrontRenderer',
@@ -169,8 +173,12 @@ class AdminWidgetController extends AbstractAdminController
                 'attr' => array(
                     'placeholder' => '{"title": "Hello", "content": "Hello world!"}',
             ), ))
-            ->add('css', 'textarea')
-            ->add('js', 'textarea')
+            ->add('css', 'textarea', array(
+                'required' => false,
+            ))
+            ->add('js', 'textarea', array(
+                'required' => false,
+            ))
             ->add('front_renderer', 'text', array(
                 'attr' => array(
                     'placeholder' => '\Madef\CmsBundle\Renderer\DefaultFrontRenderer',

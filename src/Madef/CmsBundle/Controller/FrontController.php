@@ -152,7 +152,7 @@ class FrontController extends Controller
             $vars = array();
         }
         $rendererClass = $widget->getFrontRenderer();
-        $renderer = new $rendererClass($widget, $vars);
+        $renderer = new $rendererClass($this, $widget, $vars);
 
         return $renderer->render();
     }

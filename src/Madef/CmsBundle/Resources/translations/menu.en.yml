@@ -1,4 +1,4 @@
-main_menu:
+left_menu:
     cms: CMS
     page:
         list: Page
@@ -20,8 +20,3 @@ main_menu:
         media: Media
         version: Version
         widget: Widget
-right_menu:
-    parameters: Parameters
-    myaccount: My account
-    users: Users
-    logout: Logout

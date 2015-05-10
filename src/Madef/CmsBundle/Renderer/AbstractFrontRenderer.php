@@ -32,17 +32,20 @@ abstract class AbstractFrontRenderer
 {
     protected $widget;
     protected $vars;
+    protected $controller;
 
     /**
-     * @param \Madef\CmsBundle\Entity\Widget $widget
-     * @param array                          $vars
+     * @param \Symfony\Bundle\FrameworkBundle\Controller\Controller $controller
+     * @param \Madef\CmsBundle\Entity\Widget                        $widget
+     * @param array                                                 $vars
      *
      * @return string
      */
-    public function __construct(\Madef\CmsBundle\Entity\Widget $widget, $vars)
+    public function __construct(\Symfony\Bundle\FrameworkBundle\Controller\Controller $controller, \Madef\CmsBundle\Entity\Widget $widget, $vars)
     {
         $this->widget = $widget;
         $this->vars = $vars;
+        $this->controller = $controller;
     }
 
     /**

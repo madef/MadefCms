@@ -22,3 +22,7 @@ Autoresize.prototype.resize = function()
         this.textarea.style.height = size + 'px';
     } while (this.textarea.scrollHeight == lastScrollHeight)
 }
+
+$('textarea').each(function() {
+    new Autoresize(this);
+});
