@@ -28,7 +28,7 @@
 
 namespace Madef\CmsBundle\Controller;
 
-use Symfony\Component\Yaml\Yaml;
+use Madef\CmsBundle\Event\MenuEvent;
 use Symfony\Component\HttpFoundation\Response;
 
 trait TraitMenuAdminController
@@ -42,9 +42,14 @@ trait TraitMenuAdminController
 
     protected function initMenu(&$parameters)
     {
-        $menu = Yaml::parse(file_get_contents($this->container->get('kernel')->getRootDir().'/../app/data/menu.yml'));
+        $dispatcher = $this->get('event_dispatcher');
 
-        $parameters['main_menu'] = $menu['main_menu'];
-        $parameters['right_menu'] = $menu['right_menu'];
+        $event = new MenuEvent();
+        $dispatcher->dispatch('menu.left', $event);
+        $parameters['left_menu'] = $event->getEntries();
+
+        $event = new MenuEvent();
+        $dispatcher->dispatch('menu.right', $event);
+        $parameters['right_menu'] = $event->getEntries();
     }
 }

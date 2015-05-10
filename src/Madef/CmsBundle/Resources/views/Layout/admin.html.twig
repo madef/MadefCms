@@ -38,7 +38,7 @@
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            {% for entry in main_menu %}
+                            {% for entry in left_menu %}
                                 {% if entry.role is not defined or is_granted(entry.role) %}
                                     <li class="
                                             {% if entry.route is defined and app.request.attributes.get('_route') == entry.route %}active{% endif %}

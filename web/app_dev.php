@@ -27,9 +27,6 @@ require_once __DIR__.'/../app/AppKernel.php';
 if (!file_exists(__DIR__.'/../app/data/db.sqlite')) {
     copy(__DIR__.'/../app/data/db.sqlite.orig', __DIR__.'/../app/data/db.sqlite');
 }
-if (!file_exists(__DIR__.'/../app/data/menu.yml')) {
-    copy(__DIR__.'/../app/data/menu.yml.orig', __DIR__.'/../app/data/menu.yml');
-}
 
 $kernel = new AppKernel('dev', true);
 $kernel->loadClassCache();

@@ -7,7 +7,6 @@
 /app/logs/*
 !app/cache/.gitkeep
 !app/logs/.gitkeep
-/app/data/menu.yml
 /build/
 /vendor/
 /bin/

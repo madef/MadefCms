@@ -2,3 +2,8 @@ parameters:
 #    madef_cms.example.class: Madef\CmsBundle\Example
 
 services:
+    cms.listener.menu:
+        class: Madef\CmsBundle\Listener\MenuListener
+        tags:
+            - { name : kernel.event_listener, event: menu.left, method: addToMenuLeft }
+            - { name : kernel.event_listener, event: menu.right, method: addToMenuRight }
