@@ -41,8 +41,14 @@ class LanguageController extends Controller
     public function adminRouteAction(Request $request)
     {
         $language = $request->getPreferredLanguage();
+
         if (empty($language)) {
             $language = 'en';
+        }
+
+        if (strlen($language) > 2) {
+            $languages = explode('_', $language);
+            $language = $languages[0];
         }
 
         return $this->redirect($this->generateUrl('madef_cms_admin_home', array('_locale' => $language)));
@@ -56,8 +62,14 @@ class LanguageController extends Controller
     public function frontRouteAction(Request $request)
     {
         $language = $request->getPreferredLanguage();
+
         if (empty($language)) {
             $language = 'en';
+        }
+
+        if (strlen($language) > 2) {
+            $languages = explode('_', $language);
+            $language = $languages[0];
         }
 
         return $this->redirect($this->generateUrl('madef_cms_front_display_page', array('_locale' => $language)));
