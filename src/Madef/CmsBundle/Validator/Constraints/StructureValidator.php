@@ -48,7 +48,6 @@ class StructureValidator extends ConstraintValidator
             return;
         }
 
-        var_export($array);
         foreach ($array as $subarray) {
             if (!is_array($subarray)) {
                 $this->context->addViolation($constraint->message);
