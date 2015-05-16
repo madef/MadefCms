@@ -84,6 +84,12 @@ class AdminLayoutController extends AbstractAdminController
                 'attr' => array(
                     'placeholder' => '{}',
             ), ))
+            ->add('css', 'textarea', array(
+                'required' => false,
+            ))
+            ->add('js', 'textarea', array(
+                'required' => false,
+            ))
             ->add('version', 'entity', array(
                 'class' => 'MadefCmsBundle:Version',
                 'empty_value'  => '',
@@ -169,6 +175,12 @@ class AdminLayoutController extends AbstractAdminController
                 'attr' => array(
                     'placeholder' => '{}',
             ), ))
+            ->add('css', 'textarea', array(
+                'required' => false,
+            ))
+            ->add('js', 'textarea', array(
+                'required' => false,
+            ))
             ->add('version', 'entity', array(
                 'class' => 'MadefCmsBundle:Version',
                 'empty_value'  => '',

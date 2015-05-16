@@ -33,6 +33,16 @@ class FrontJsController extends AbstractFrontAssetController
     protected $type = self::TYPE_JS;
 
     /**
+     * Get Js content of the layout.
+     *
+     * @param $widget \Madef\CmsBundle\Entity\Layout
+     */
+    protected function getLayoutAsset($layout)
+    {
+        return $layout->getJs();
+    }
+
+    /**
      * Get Js content of the widget.
      *
      * @param $widget \Madef\CmsBundle\Entity\Widget

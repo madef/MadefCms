@@ -33,6 +33,16 @@ class FrontCssController extends AbstractFrontAssetController
     protected $type = self::TYPE_CSS;
 
     /**
+     * Get Css content of the layout.
+     *
+     * @param $widget \Madef\CmsBundle\Entity\Layout
+     */
+    protected function getLayoutAsset($layout)
+    {
+        return $layout->getCss();
+    }
+
+    /**
      * Get Css content of the widget.
      *
      * @param $widget \Madef\CmsBundle\Entity\Widget

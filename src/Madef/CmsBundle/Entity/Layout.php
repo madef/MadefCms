@@ -81,6 +81,20 @@ class Layout
     private $default_content;
 
     /**
+     * @ORM\Column(type="text", nullable=true)
+     *
+     * @var string
+     */
+    private $js;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     *
+     * @var string
+     */
+    private $css;
+
+    /**
      * @ORM\Column(type="boolean")
      *
      * @var Boolean
@@ -201,6 +215,54 @@ class Layout
     public function getDefaultContent()
     {
         return $this->default_content;
+    }
+
+    /**
+     * Set js.
+     *
+     * @param string $js
+     *
+     * @return Widget
+     */
+    public function setJs($js)
+    {
+        $this->js = $js;
+
+        return $this;
+    }
+
+    /**
+     * Get js.
+     *
+     * @return string
+     */
+    public function getJs()
+    {
+        return $this->js;
+    }
+
+    /**
+     * Set css.
+     *
+     * @param string $css
+     *
+     * @return Widget
+     */
+    public function setCss($css)
+    {
+        $this->css = $css;
+
+        return $this;
+    }
+
+    /**
+     * Get css.
+     *
+     * @return string
+     */
+    public function getCss()
+    {
+        return $this->css;
     }
 
     /**

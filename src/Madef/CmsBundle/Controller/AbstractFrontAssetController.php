@@ -42,6 +42,26 @@ abstract class AbstractFrontAssetController extends Controller
     protected $version;
     protected $pageIdentifier;
     protected $type;
+    protected $page;
+
+    /**
+     * Get page.
+     *
+     * @return \Madef\CmsBundle\Entity\Page
+     */
+    protected function getPage()
+    {
+        if (!isset($this->page)) {
+            $this->page = $this->getDoctrine()->getRepository('MadefCmsBundle:Page')
+                    ->findOneByVersion($this->pageIdentifier, $this->version);
+
+            if (!$this->page) {
+                throw $this->createNotFoundException($this->get('translator')->trans('front.error.entity.page.notfound'));
+            }
+        }
+
+        return $this->page;
+    }
 
     /**
      * @return type
@@ -50,15 +70,8 @@ abstract class AbstractFrontAssetController extends Controller
      */
     protected function getWidgets()
     {
-        $page = $this->getDoctrine()->getRepository('MadefCmsBundle:Page')
-                ->findOneByVersion($this->pageIdentifier, $this->version);
-
-        if (!$page) {
-            throw $this->createNotFoundException($this->get('translator')->trans('front.error.entity.page.notfound'));
-        }
-
         $widgets = array();
-        $pageContent = json_decode($page->getContent(), true);
+        $pageContent = json_decode($this->getPage()->getContent(), true);
         foreach ($pageContent as $areaContent) {
             foreach ($areaContent as $widgetData) {
                 $widgets[] = $this->getWidget($widgetData['identifier']);
@@ -134,6 +147,17 @@ abstract class AbstractFrontAssetController extends Controller
     }
 
     /**
+     * Get layout.
+     *
+     * @return \Madef\CmsBundle\Entity\Layout
+     */
+    protected function getLayout()
+    {
+        return $this->getDoctrine()->getRepository('MadefCmsBundle:Layout')
+                ->findOneByVersion($this->getPage()->getLayoutIdentifier(), $this->version);
+    }
+
+    /**
      * Generate asset content.
      */
     protected function generate()
@@ -143,6 +167,7 @@ abstract class AbstractFrontAssetController extends Controller
         foreach ($widgets as $widget) {
             $collection[] = $this->getWidgetAsset($widget);
         }
+        $collection[] = $this->getLayoutAsset($this->getLayout());
 
         $data = implode("\n", $collection);
         $this->setCache($data);
