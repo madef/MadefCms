@@ -66,7 +66,6 @@ abstract class AbstractFrontRenderer
             ));
         }));
 
-
         $widgetTwigEnvironment->addFunction(new \Twig_SimpleFunction('link', function ($identifier) {
             if ($this->controller->getHashVersion() != 'current') {
                 return $this->controller->generateUrl('madef_cms_front_display_versioned_page', array(

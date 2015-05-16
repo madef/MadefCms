@@ -99,6 +99,9 @@ class AdminPageController extends AbstractAdminController
                     'data-ajax-url' => $this->generateUrl('madef_cms_admin_ajax_widgets_and_layouts'),
                 ),
             ))
+            ->add('stay', 'submit', array(
+                'label' => $this->get('translator')->trans('admin.form.button.stay'),
+            ))
             ->add('save', 'submit')
             ->getForm();
 
@@ -108,7 +111,14 @@ class AdminPageController extends AbstractAdminController
             $em->persist($page);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('madef_cms_admin_page_list'));
+            if ($form->get('stay')->isClicked()) {
+                return $this->redirect($this->generateUrl('madef_cms_admin_page_edit', array(
+                    'identifier' => $page->getIdentifier(),
+                    'version' => $page->getVersion()->getId(),
+                )));
+            } else {
+                return $this->redirect($this->generateUrl('madef_cms_admin_page_list'));
+            }
         }
 
         return $this->render('MadefCmsBundle:Admin:form.html.twig', array(
@@ -180,6 +190,9 @@ class AdminPageController extends AbstractAdminController
                     'data-ajax-url' => $this->generateUrl('madef_cms_admin_ajax_widgets_and_layouts'),
                 ),
             ))
+            ->add('stay', 'submit', array(
+                'label' => $this->get('translator')->trans('admin.form.button.stay'),
+            ))
             ->add('save', 'submit')
             ->getForm();
 
@@ -189,7 +202,14 @@ class AdminPageController extends AbstractAdminController
             $em->persist($page);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('madef_cms_admin_page_list'));
+            if ($form->get('stay')->isClicked()) {
+                return $this->redirect($this->generateUrl('madef_cms_admin_page_edit', array(
+                    'identifier' => $page->getIdentifier(),
+                    'version' => $page->getVersion()->getId(),
+                )));
+            } else {
+                return $this->redirect($this->generateUrl('madef_cms_admin_page_list'));
+            }
         }
 
         return $this->render('MadefCmsBundle:Admin:form.html.twig', array(

@@ -60,12 +60,12 @@ class AdminWidgetController extends AbstractAdminController
      */
     public function addAction(Request $request)
     {
-        $page = new Widget();
-        $page->setRemoved(false);
+        $widget = new Widget();
+        $widget->setRemoved(false);
 
         $em = $this->getDoctrine()->getManager();
 
-        $form = $this->createFormBuilder($page)
+        $form = $this->createFormBuilder($widget)
             ->add('identifier', 'text', array(
                 'attr' => array(
                     'placeholder' => 'widget-identifier',
@@ -106,26 +106,36 @@ class AdminWidgetController extends AbstractAdminController
                     return $er->getNotPublishedQuery();
                 },
             ))
+            ->add('stay', 'submit', array(
+                'label' => $this->get('translator')->trans('admin.form.button.stay'),
+            ))
             ->add('save', 'submit')
             ->getForm();
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em->persist($page);
+            $em->persist($widget);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('madef_cms_admin_widget_list'));
+            if ($form->get('stay')->isClicked()) {
+                return $this->redirect($this->generateUrl('madef_cms_admin_widget_edit', array(
+                    'identifier' => $widget->getIdentifier(),
+                    'version' => $widget->getVersion()->getId(),
+                )));
+            } else {
+                return $this->redirect($this->generateUrl('madef_cms_admin_widget_list'));
+            }
         }
 
         return $this->render('MadefCmsBundle:Admin:form.html.twig', array(
             'form' => $form->createView(),
-            'title' => $this->get('translator')->trans('admin.widget.page.add.title'),
+            'title' => $this->get('translator')->trans('admin.widget.widget.add.title'),
         ));
     }
 
     /**
-     * Display form to edit a Page.
+     * Display form to edit a Widget.
      *
      * @ParamConverter("version", class="MadefCmsBundle:Version")
      *
@@ -146,7 +156,7 @@ class AdminWidgetController extends AbstractAdminController
             throw $this->createNotFoundException($this->get('translator')->trans('admin.error.entity.widget.notfound'));
         }
 
-        // Use new page if version is published
+        // Use new widget if version is published
         if ($version->wasPublished()) {
             $widget = new Widget();
             $widget->setIdentifier($currentWidget->getIdentifier());
@@ -195,6 +205,9 @@ class AdminWidgetController extends AbstractAdminController
                     return $er->getNotPublishedQuery();
                 },
             ))
+            ->add('stay', 'submit', array(
+                'label' => $this->get('translator')->trans('admin.form.button.stay'),
+            ))
             ->add('save', 'submit')
             ->getForm();
 
@@ -204,12 +217,19 @@ class AdminWidgetController extends AbstractAdminController
             $em->persist($widget);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('madef_cms_admin_widget_list'));
+            if ($form->get('stay')->isClicked()) {
+                return $this->redirect($this->generateUrl('madef_cms_admin_widget_edit', array(
+                    'identifier' => $widget->getIdentifier(),
+                    'version' => $widget->getVersion()->getId(),
+                )));
+            } else {
+                return $this->redirect($this->generateUrl('madef_cms_admin_widget_list'));
+            }
         }
 
         return $this->render('MadefCmsBundle:Admin:form.html.twig', array(
             'form' => $form->createView(),
-            'title' => $this->get('translator')->trans('admin.widget.page.edit.title'),
+            'title' => $this->get('translator')->trans('admin.widget.widget.edit.title'),
         ));
     }
 }

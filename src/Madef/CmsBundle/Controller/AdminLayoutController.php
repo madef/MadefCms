@@ -60,12 +60,12 @@ class AdminLayoutController extends AbstractAdminController
      */
     public function addAction(Request $request)
     {
-        $page = new Layout();
-        $page->setRemoved(false);
+        $layout = new Layout();
+        $layout->setRemoved(false);
 
         $em = $this->getDoctrine()->getManager();
 
-        $form = $this->createFormBuilder($page)
+        $form = $this->createFormBuilder($layout)
             ->add('identifier', 'text', array(
                 'attr' => array(
                     'placeholder' => 'layout-identifier',
@@ -92,26 +92,36 @@ class AdminLayoutController extends AbstractAdminController
                     return $er->getNotPublishedQuery();
                 },
             ))
+            ->add('stay', 'submit', array(
+                'label' => $this->get('translator')->trans('admin.form.button.stay'),
+            ))
             ->add('save', 'submit')
             ->getForm();
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em->persist($page);
+            $em->persist($layout);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('madef_cms_admin_layout_list'));
+            if ($form->get('stay')->isClicked()) {
+                return $this->redirect($this->generateUrl('madef_cms_admin_layout_edit', array(
+                    'identifier' => $layout->getIdentifier(),
+                    'version' => $layout->getVersion()->getId(),
+                )));
+            } else {
+                return $this->redirect($this->generateUrl('madef_cms_admin_layout_list'));
+            }
         }
 
         return $this->render('MadefCmsBundle:Admin:form.html.twig', array(
             'form' => $form->createView(),
-            'title' => $this->get('translator')->trans('admin.layout.page.add.title'),
+            'title' => $this->get('translator')->trans('admin.layout.layout.add.title'),
         ));
     }
 
     /**
-     * Display form to edit a Page.
+     * Display form to edit a Layout.
      *
      * @ParamConverter("version", class="MadefCmsBundle:Version")
      *
@@ -132,7 +142,7 @@ class AdminLayoutController extends AbstractAdminController
             throw $this->createNotFoundException('error.entity.layout.notfound');
         }
 
-        // Use new page if version is published
+        // Use new layout if version is published
         if ($version->wasPublished()) {
             $layout = new Layout();
             $layout->setIdentifier($currentLayout->getIdentifier());
@@ -167,6 +177,9 @@ class AdminLayoutController extends AbstractAdminController
                     return $er->getNotPublishedQuery();
                 },
             ))
+            ->add('stay', 'submit', array(
+                'label' => $this->get('translator')->trans('admin.form.button.stay'),
+            ))
             ->add('save', 'submit')
             ->getForm();
 
@@ -176,12 +189,19 @@ class AdminLayoutController extends AbstractAdminController
             $em->persist($layout);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('madef_cms_admin_layout_list'));
+            if ($form->get('stay')->isClicked()) {
+                return $this->redirect($this->generateUrl('madef_cms_admin_layout_edit', array(
+                    'identifier' => $layout->getIdentifier(),
+                    'version' => $layout->getVersion()->getId(),
+                )));
+            } else {
+                return $this->redirect($this->generateUrl('madef_cms_admin_layout_list'));
+            }
         }
 
         return $this->render('MadefCmsBundle:Admin:form.html.twig', array(
             'form' => $form->createView(),
-            'title' => $this->get('translator')->trans('admin.layout.page.edit.title'),
+            'title' => $this->get('translator')->trans('admin.layout.layout.edit.title'),
         ));
     }
 }

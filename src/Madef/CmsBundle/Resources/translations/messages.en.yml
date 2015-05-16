@@ -15,6 +15,9 @@ app:
 
 # Admin section
 admin:
+    form:
+        button:
+            stay: Save and stay
     error:
         entity:
             layout:
