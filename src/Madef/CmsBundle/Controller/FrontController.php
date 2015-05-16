@@ -78,7 +78,27 @@ class FrontController extends Controller
             throw $this->createNotFoundException($this->get('translator')->trans('front.error.entity.page.notfound'));
         }
 
+        $this->hashVersion = $hashVersion;
+    }
+
+    /**
+     * Get version.
+     *
+     * @return string Version.
+     */
+    public function getVersion()
+    {
         return $this->version;
+    }
+
+    /**
+     * Get version hash.
+     *
+     * @return string Hash Version.
+     */
+    public function getHashVersion()
+    {
+        return $this->hashVersion;
     }
 
     /**
@@ -173,9 +193,31 @@ class FrontController extends Controller
                 $layoutVars[$layoutBlock] .= $this->renderWidget($widgetData);
             }
         }
+
         $layoutTwigEnvironment = new \Twig_Environment(new \Twig_Loader_String());
+
         $layoutTwigEnvironment->addFunction(new \Twig_SimpleFunction('url', function ($url, $params) {
                 return $this->generateUrl($url, $params);
+        }));
+
+        $layoutTwigEnvironment->addFunction(new \Twig_SimpleFunction('media', function ($identifier) {
+            return $this->generateUrl('madef_cms_front_display_media', array(
+                'identifier' => $identifier,
+                'version' => $this->getVersion()->getId(),
+            ));
+        }));
+
+        $layoutTwigEnvironment->addFunction(new \Twig_SimpleFunction('link', function ($identifier) {
+            if ($this->getHashVersion() != 'current') {
+                return $this->generateUrl('madef_cms_front_display_versioned_page', array(
+                    'identifier' => $identifier,
+                    'hashVersion' => $this->controller->getHashVersion(),
+                ));
+            } else {
+                return $this->generateUrl('madef_cms_front_display_page', array(
+                    'identifier' => $identifier,
+                ));
+            }
         }));
 
         return $layoutTwigEnvironment->render($this->getLayout()->getTemplate(), $layoutVars);

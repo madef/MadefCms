@@ -54,8 +54,30 @@ abstract class AbstractFrontRenderer
     public function render()
     {
         $widgetTwigEnvironment = new \Twig_Environment(new \Twig_Loader_String());
-        $widgetTwigEnvironment->addFunction(new \Twig_SimpleFunction('url', function ($url) {
-                return $this->generateUrl($url);
+
+        $widgetTwigEnvironment->addFunction(new \Twig_SimpleFunction('url', function ($url, $params) {
+                return $this->controller->generateUrl($url, $params);
+        }));
+
+        $widgetTwigEnvironment->addFunction(new \Twig_SimpleFunction('media', function ($identifier) {
+            return $this->controller->generateUrl('madef_cms_front_display_media', array(
+                'identifier' => $identifier,
+                'version' => $this->controller->getVersion()->getId(),
+            ));
+        }));
+
+
+        $widgetTwigEnvironment->addFunction(new \Twig_SimpleFunction('link', function ($identifier) {
+            if ($this->controller->getHashVersion() != 'current') {
+                return $this->controller->generateUrl('madef_cms_front_display_versioned_page', array(
+                    'identifier' => $identifier,
+                    'hashVersion' => $this->controller->getHashVersion(),
+                ));
+            } else {
+                return $this->controller->generateUrl('madef_cms_front_display_page', array(
+                    'identifier' => $identifier,
+                ));
+            }
         }));
 
         return $widgetTwigEnvironment->render($this->widget->getTemplate(), $this->getData());
