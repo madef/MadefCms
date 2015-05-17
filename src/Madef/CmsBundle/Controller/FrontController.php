@@ -32,6 +32,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Madef\CmsBundle\Entity\TwigEnvironment;
 
 class FrontController extends Controller
 {
@@ -194,31 +195,7 @@ class FrontController extends Controller
             }
         }
 
-        $layoutTwigEnvironment = new \Twig_Environment(new \Twig_Loader_String());
-
-        $layoutTwigEnvironment->addFunction(new \Twig_SimpleFunction('url', function ($url, $params) {
-                return $this->generateUrl($url, $params);
-        }));
-
-        $layoutTwigEnvironment->addFunction(new \Twig_SimpleFunction('media', function ($identifier) {
-            return $this->generateUrl('madef_cms_front_display_media', array(
-                'identifier' => $identifier,
-                'version' => $this->getVersion()->getId(),
-            ));
-        }));
-
-        $layoutTwigEnvironment->addFunction(new \Twig_SimpleFunction('link', function ($identifier) {
-            if ($this->getHashVersion() != 'current') {
-                return $this->generateUrl('madef_cms_front_display_versioned_page', array(
-                    'identifier' => $identifier,
-                    'hashVersion' => $this->controller->getHashVersion(),
-                ));
-            } else {
-                return $this->generateUrl('madef_cms_front_display_page', array(
-                    'identifier' => $identifier,
-                ));
-            }
-        }));
+        $layoutTwigEnvironment = new TwigEnvironment($this);
 
         return $layoutTwigEnvironment->render($this->getLayout()->getTemplate(), $layoutVars);
     }

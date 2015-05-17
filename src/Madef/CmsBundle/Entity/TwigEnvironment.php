@@ -26,39 +26,46 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Madef\CmsBundle\Renderer;
+namespace Madef\CmsBundle\Entity;
 
-use Madef\CmsBundle\Entity\TwigEnvironment;
-
-abstract class AbstractFrontRenderer
+class TwigEnvironment extends \Twig_Environment
 {
-    protected $widget;
-    protected $vars;
     protected $controller;
 
-    /**
-     * @param \Symfony\Bundle\FrameworkBundle\Controller\Controller $controller
-     * @param \Madef\CmsBundle\Entity\Widget                        $widget
-     * @param array                                                 $vars
-     *
-     * @return string
-     */
-    public function __construct(\Symfony\Bundle\FrameworkBundle\Controller\Controller $controller, \Madef\CmsBundle\Entity\Widget $widget, $vars)
+    public function __construct($controller)
     {
-        $this->widget = $widget;
-        $this->vars = $vars;
+        parent::__construct(new \Twig_Loader_String());
+
         $this->controller = $controller;
+
+        $this->addFunction(new \Twig_SimpleFunction('url', function ($url, $params) {
+                return $this->controller->generateUrl($url, $params);
+        }));
+
+        $this->addFilter(new \Twig_SimpleFilter('markdown', function ($md) {
+            $parser = new \MarkdownExtended\Parser();
+
+            return $parser->transform($md);
+        }));
+
+        $this->addFunction(new \Twig_SimpleFunction('media', function ($identifier) {
+            return $this->controller->generateUrl('madef_cms_front_display_media', array(
+                'identifier' => $identifier,
+                'version' => $this->controller->getVersion()->getId(),
+            ));
+        }));
+
+        $this->addFunction(new \Twig_SimpleFunction('link', function ($identifier) {
+            if ($this->controller->getHashVersion() != 'current') {
+                return $this->controller->generateUrl('madef_cms_front_display_versioned_page', array(
+                    'identifier' => $identifier,
+                    'hashVersion' => $this->controller->getHashVersion(),
+                ));
+            } else {
+                return $this->controller->generateUrl('madef_cms_front_display_page', array(
+                    'identifier' => $identifier,
+                ));
+            }
+        }));
     }
-
-    /**
-     * @return string
-     */
-    public function render()
-    {
-        $widgetTwigEnvironment = new TwigEnvironment($this->controller);
-
-        return $widgetTwigEnvironment->render($this->widget->getTemplate(), $this->getData());
-    }
-
-    abstract protected function getData();
 }
